@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps with AWS - Careeroot</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <img src="Logo/skillitizelogo.png" alt="skillitizelogo">
+  </div>
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav id="main-nav" class="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="blog.html">Blogs</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- COURSE DETAIL PAGE -->
+<section class="course-detail-page">
+  <div class="course-detail-container">
+
+    <!-- HERO / HEADER -->
+    <div class="course-detail-header">
+      <div>
+        <span class="course-detail-badge">Cloud &amp; DevOps</span>
+        <h1>DevOps with AWS</h1>
+        <p>Learn to automate, deploy, and monitor scalable infrastructure using industry-standard DevOps tools and AWS cloud services.</p>
+      </div>
+      <div class="course-detail-price">
+        <span class="price-label">Course Fee</span>
+        <span class="price-amount">&#8377; ---</span>
+      </div>
+    </div>
+
+    <!-- COURSE OVERVIEW -->
+    <div class="course-detail-section">
+      <h2>Course Overview</h2>
+      <p>The DevOps with AWS program is built for engineers who want to master the tools and practices that power modern software delivery. You will start with Linux administration and shell scripting, progress through containerization with Docker and orchestration with Kubernetes, and gain hands-on experience with core AWS services. The course covers the complete CI/CD lifecycle — from writing Jenkinsfiles and GitHub Actions workflows to deploying applications with ArgoCD. You will also learn production monitoring with Prometheus, Grafana, and the ELK stack. The capstone project ties everything together: you will build, test, deploy, and monitor a complete application pipeline, giving you a real-world project to demonstrate in interviews.</p>
+    </div>
+
+    <!-- WHAT YOU'LL LEARN -->
+    <div class="course-detail-section">
+      <h2>What You'll Learn</h2>
+      <div class="course-detail-grid">
+        <div class="course-detail-card">
+          <h3>Linux &amp; Scripting</h3>
+          <p>Navigate the Linux file system confidently, write Bash scripts for automation, and manage users, permissions, and cron jobs.</p>
+        </div>
+        <div class="course-detail-card">
+          <h3>Docker &amp; Kubernetes</h3>
+          <p>Containerize applications with Docker, orchestrate deployments with Kubernetes, and manage configurations with Helm charts.</p>
+        </div>
+        <div class="course-detail-card">
+          <h3>AWS Cloud</h3>
+          <p>Provision and manage cloud infrastructure using EC2, S3, IAM, RDS, VPC, Lambda, and CloudFormation templates.</p>
+        </div>
+        <div class="course-detail-card">
+          <h3>CI/CD Pipelines</h3>
+          <p>Build automated pipelines with Jenkins and GitHub Actions, integrate quality gates with SonarQube, and deploy with ArgoCD.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAILED SYLLABUS -->
+    <div class="course-detail-section">
+      <h2>Detailed Syllabus</h2>
+
+      <div class="course-detail-module">
+        <h3>Module 1: Linux &amp; Shell Scripting</h3>
+        <ul class="course-detail-list">
+          <li>Linux file system hierarchy and navigation commands</li>
+          <li>File permissions, ownership, and access control</li>
+          <li>Bash scripting: variables, loops, conditionals, and functions</li>
+          <li>Text processing with grep, awk, sed, and pipes</li>
+          <li>Cron jobs and task scheduling for automation</li>
+          <li>Process management, system monitoring, and log analysis</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 2: Version Control with Git</h3>
+        <ul class="course-detail-list">
+          <li>Git fundamentals: init, add, commit, status, and log</li>
+          <li>Branching strategies: feature branches, release branches, hotfixes</li>
+          <li>Merging, rebasing, and resolving merge conflicts</li>
+          <li>Pull requests, code reviews, and collaboration workflows</li>
+          <li>Git workflows: GitFlow, GitHub Flow, and trunk-based development</li>
+          <li>Tags, releases, and semantic versioning</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 3: Docker &amp; Containerization</h3>
+        <ul class="course-detail-list">
+          <li>Container concepts: images, containers, layers, and registries</li>
+          <li>Writing Dockerfiles: FROM, RUN, COPY, CMD, ENTRYPOINT</li>
+          <li>Volumes, bind mounts, and persistent storage</li>
+          <li>Docker Compose for multi-container applications</li>
+          <li>Multi-stage builds for optimized production images</li>
+          <li>Docker networking, security best practices, and image scanning</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 4: Kubernetes</h3>
+        <ul class="course-detail-list">
+          <li>Kubernetes architecture: control plane, nodes, and etcd</li>
+          <li>Pods, ReplicaSets, and Deployments for workload management</li>
+          <li>Services: ClusterIP, NodePort, LoadBalancer, and Ingress</li>
+          <li>ConfigMaps, Secrets, and environment configuration</li>
+          <li>Helm charts for templating and package management</li>
+          <li>Monitoring Kubernetes clusters and resource management</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 5: AWS Cloud Services</h3>
+        <ul class="course-detail-list">
+          <li>EC2 instances: launching, configuring, security groups, and key pairs</li>
+          <li>S3 buckets: storage classes, lifecycle policies, and static hosting</li>
+          <li>IAM: users, groups, roles, policies, and least-privilege access</li>
+          <li>RDS: managed databases, backups, and read replicas</li>
+          <li>VPC: subnets, route tables, NAT gateways, and network ACLs</li>
+          <li>Lambda functions and CloudFormation for infrastructure as code</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 6: CI/CD Pipelines</h3>
+        <ul class="course-detail-list">
+          <li>Jenkins: installation, Jenkinsfile, declarative pipelines, and plugins</li>
+          <li>GitHub Actions: workflows, jobs, steps, and marketplace actions</li>
+          <li>ArgoCD for GitOps-based continuous deployment</li>
+          <li>SonarQube integration for code quality and security scanning</li>
+          <li>Artifact management and container registry workflows</li>
+          <li>Pipeline best practices: parallel stages, caching, and notifications</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 7: Monitoring &amp; Logging</h3>
+        <ul class="course-detail-list">
+          <li>Prometheus: metrics collection, PromQL queries, and alerting rules</li>
+          <li>Grafana: dashboard creation, data sources, and visualization panels</li>
+          <li>ELK Stack: Elasticsearch, Logstash, and Kibana for centralized logging</li>
+          <li>AWS CloudWatch: metrics, alarms, logs, and custom dashboards</li>
+          <li>Incident response and on-call best practices</li>
+          <li>Application performance monitoring (APM) fundamentals</li>
+        </ul>
+      </div>
+
+      <div class="course-detail-module">
+        <h3>Module 8: Capstone Project</h3>
+        <ul class="course-detail-list">
+          <li>End-to-end pipeline: Build, Test, Deploy, and Monitor</li>
+          <li>Containerize a microservices application with Docker</li>
+          <li>Deploy to Kubernetes on AWS EKS</li>
+          <li>Automate with Jenkins/GitHub Actions CI/CD pipeline</li>
+          <li>Set up Prometheus + Grafana monitoring and alerting</li>
+          <li>Documentation, architecture diagrams, and portfolio presentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WHO IS THIS FOR -->
+    <div class="course-detail-section">
+      <h2>Who Is This For?</h2>
+      <ul class="course-detail-list">
+        <li>Software developers who want to learn infrastructure and deployment automation</li>
+        <li>System administrators looking to transition into modern DevOps roles</li>
+        <li>IT professionals seeking hands-on experience with AWS cloud services</li>
+        <li>Computer science graduates aiming for high-demand cloud engineering careers</li>
+        <li>Anyone interested in automation, infrastructure as code, and site reliability engineering</li>
+      </ul>
+    </div>
+
+    <!-- CAREER OUTCOMES -->
+    <div class="course-detail-section">
+      <h2>Career Outcomes</h2>
+      <ul class="course-detail-list">
+        <li>DevOps Engineer managing CI/CD pipelines and cloud infrastructure</li>
+        <li>Cloud Engineer specializing in AWS architecture and services</li>
+        <li>Site Reliability Engineer (SRE) ensuring system uptime and performance</li>
+        <li>Platform Engineer building internal developer platforms and tooling</li>
+        <li>Release Engineer automating build, test, and deployment workflows</li>
+        <li>A capstone project demonstrating a complete DevOps pipeline for your portfolio</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="#" class="course-detail-cta">Enroll Now — &#8377; ---</a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+
+    <div>
+      <h3>Careeroot</h3>
+      <p>Empowering careers with practical learning.</p>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Courses</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <a href="#">Help</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+
+  </div>
+
+  <p class="copy">&copy; 2026 Careeroot. All rights reserved.</p>
+
+</footer>
+
+<script src="js/hammenu.js"></script>
+
+</body>
+</html>
