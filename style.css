@@ -1048,3 +1048,310 @@ footer a{
 .course-card button:active {
     transform: translateY(0);
 }
+
+/* ==========================================
+   LEAD CAPTURE POPUP
+========================================== */
+
+.popup-overlay{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0,0,0,0.65) !important;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999 !important;
+    padding: 20px;
+}
+
+.popup-box{
+    background: #fff;
+    width: 500px;
+    max-width: 90%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.popup-box{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:24px;
+    padding:35px;
+    position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    animation:popupShow .35s ease;
+}
+
+.popup-box h2{
+    font-size:30px;
+    margin-bottom:10px;
+    color:#111827;
+}
+
+.popup-box p{
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.popup-box input,
+.popup-box textarea{
+    width:100%;
+    padding:14px 16px;
+    margin-bottom:15px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.popup-box input:focus,
+.popup-box textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.popup-submit{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+.close-popup{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    cursor:pointer;
+    color:#64748b;
+}
+
+@keyframes popupShow{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.popup-box select{
+    width:100%;
+    padding:14px 16px;
+    margin-bottom:15px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:15px;
+    font-family:'Poppins',sans-serif;
+    outline:none;
+    background:#fff;
+    transition:.3s;
+}
+
+.popup-box select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+/* ==========================================
+   LEAD POPUP FINAL
+========================================== */
+
+#leadPopup{
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: none;
+
+    justify-content: center !important;
+    align-items: center !important;
+
+    background: rgba(0,0,0,0.7) !important;
+
+    z-index: 999999 !important;
+
+    padding: 20px !important;
+}
+
+#leadPopup .popup-box{
+    background: #fff !important;
+
+    width: 500px !important;
+    max-width: 90% !important;
+
+    padding: 35px !important;
+
+    border-radius: 20px !important;
+
+    position: relative !important;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.25) !important;
+}
+
+.close-popup{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    cursor:pointer;
+}
+/* This part is for contactbot */
+
+/* Career Widget */
+
+.career-widget{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    z-index:99999;
+}
+
+.career-btn{
+    width:75px;
+    height:75px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:30px;
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    box-shadow:
+    0 10px 30px rgba(37,99,235,.4);
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(37,99,235,.5);
+    }
+    70%{
+        box-shadow:0 0 0 20px rgba(37,99,235,0);
+    }
+    100%{
+        box-shadow:0 0 0 0 rgba(37,99,235,0);
+    }
+}
+
+.career-box{
+
+    position:absolute;
+
+    bottom:90px;
+    right:0;
+
+    width:320px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    display:none;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.18);
+}
+
+.career-box.show{
+    display:block;
+}
+
+.career-header{
+
+    background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #7c3aed
+    );
+
+    color:white;
+
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.career-header h3{
+    margin:0;
+}
+
+.career-header span{
+    cursor:pointer;
+    font-size:24px;
+}
+
+.career-body{
+    padding:20px;
+}
+
+.career-body p{
+    margin-bottom:15px;
+    color:#64748b;
+}
+
+.career-option{
+
+    display:block;
+
+    text-decoration:none;
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    color:#111827;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.career-option:hover{
+
+    background:#eef2ff;
+
+    transform:translateX(5px);
+}
+
+/*Every thing wala section ka overwrite  for background */
+.features-section{
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(37,99,235,.08),
+        transparent 35%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        rgba(124,58,237,.08),
+        transparent 35%
+    ),
+    #f8fbff;
+}
