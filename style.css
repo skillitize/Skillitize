@@ -64,30 +64,18 @@ a{
 ========================================================= */
 
 .header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:90px;
 
-  position:fixed;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-  top:0;
-  left:0;
-
-  width:100%;
-  height:82px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 8%;
-
-  background:rgba(255,255,255,0.88);
-
-  backdrop-filter:blur(14px);
-
-  box-shadow:0 5px 25px rgba(0,0,0,0.06);
-
-  border-bottom:1px solid rgba(0,0,0,0.05);
-
-  z-index:1000;
+    padding:0 5%;
+    box-sizing:border-box;
 }
 
 
@@ -95,20 +83,16 @@ a{
    LOGO
 ========================================================= */
 
-.logo{
-  display:flex;
-  align-items:center;
-
-  height:60px;
-
-  flex-shrink:0;
+.logo-container{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
 }
 
-.logo img{
-  height:52px;
-  width:auto;
-  object-fit:contain;
-  display:block;
+.logo-container img{
+    height:200px;
+    width:auto;
+    display:block;
 }
 
 
@@ -1369,3 +1353,117 @@ footer a{
 }
 
 /*Every thing wala section ka overwrite  for background */
+
+.premium{
+    position: relative;
+    overflow: hidden;
+    padding: 100px 8%;
+}
+
+.premium-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.premium-overlay{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2;
+}
+
+.premium-content{
+    position: relative;
+    z-index: 3;
+}
+
+.premium .section-title h2,
+.premium .section-title p{
+    color: white;
+}
+
+.premium-card{
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+}
+
+.premium-card p{
+    color: rgba(255,255,255,0.85);
+}
+
+.contact{
+    position: relative;
+    overflow: hidden;
+    min-height: 850px;
+}
+
+.contact-bg-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 1;
+}
+
+.contact-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(8, 27, 90, 0.70);
+    backdrop-filter: blur(2px);
+
+    z-index: 2;
+}
+
+.contact-container{
+    position: relative;
+    z-index: 3;
+
+    min-height: 850px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 50px;
+    align-items: center;
+}
+
+/* White text */
+.contact-info h2,
+.contact-info p,
+.contact-info h4{
+    color: #fff;
+}
+
+/* Glassmorphism cards */
+.info-box{
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+.contact-form{
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.contact-form input,
+.contact-form textarea{
+    background: rgba(255,255,255,0.9);
+}
