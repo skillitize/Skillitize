@@ -1711,7 +1711,7 @@ footer a{
     }
 
     .hero-container {
-      display:block;
+      display:grid;
       grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
       align-items: center;
       gap: 70px;
@@ -2017,10 +2017,6 @@ footer a{
 
     /* MOBILE */
     @media(max-width: 768px) {
-      .nav {
-        display: none;
-      }
-
       .hero-content h1,
       .section-title h2,
       .about-text h2,
