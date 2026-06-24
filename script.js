@@ -80,3 +80,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* ==========================
+   LEAD FORM SUBMIT
+========================== */
+
+const leadForm = document.getElementById("leadForm");
+
+if (leadForm) {
+
+    leadForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            course: document.getElementById("course").value,
+            message: document.getElementById("message").value
+        };
+
+        try {
+
+            const response = await fetch(
+                "https://api.skillitize.com/submit.php",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Thank you! Our team will contact you shortly.");
+                leadForm.reset();
+
+                const popup = document.getElementById("leadPopup");
+                if (popup) {
+                    popup.style.display = "none";
+                }
+
+            } else {
+                alert("Submission failed.");
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert("Server error. Please try again.");
+        }
+
+    });
+
+}
