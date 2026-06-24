@@ -85,7 +85,7 @@ a{
 
 .logo-container{
     display:flex;
-    align-items:flex-start;
+    align-items:center;
     flex-shrink:0;
 }
 
