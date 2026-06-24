@@ -557,13 +557,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <form id="leadForm">
 
-      <input type="text" placeholder="Full Name" required>
+  <input type="text" id="name" placeholder="Full Name" required>
 
-      <input type="email" placeholder="Email Address" required>
+  <input type="email" id="email" placeholder="Email Address" required>
 
-      <input type="tel" placeholder="Phone Number" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
 
-      <select name="course" id="course" required>
+  <select id="course" required>
     <option value="">Select Interested Course</option>
     <option value="Data Analyst">Data Analyst</option>
     <option value="AWS Cloud">AWS Cloud</option>
@@ -573,7 +573,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <option value="Power Platform">Power Platform</option>
 </select>
 
-      <textarea placeholder="Your Message" rows="4"></textarea>
+      <textarea id="message" placeholder="Your Message" rows="4"></textarea>
 
       <button type="submit" class="popup-submit">
     Submit
