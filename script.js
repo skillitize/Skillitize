@@ -148,3 +148,66 @@ if (popup) {
     }
 
 });
+
+/* ==========================
+   CONTACT FORM
+========================== */
+const contactForm = document.getElementById("contactForm");
+
+console.log("Contact Form:", contactForm);
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async (e) => {
+
+        console.log("Contact form submitted");
+
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("contactName").value,
+            email: document.getElementById("contactEmail").value,
+            phone: document.getElementById("contactPhone").value,
+            message: document.getElementById("contactMessage").value
+        };
+
+        console.log("Sending Data:", data);
+
+        try {
+
+            const response = await fetch(
+                "https://api.skillitize.com/contact_submit.php",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }
+            );
+
+            console.log("Response:", response);
+
+            const result = await response.json();
+
+            console.log("Result:", result);
+
+            if (result.success) {
+
+                alert("Message sent successfully!");
+                contactForm.reset();
+
+            } else {
+
+                alert("Submission failed.");
+            }
+
+        } catch (error) {
+
+            console.error("Fetch Error:", error);
+
+        }
+
+    });
+
+}
