@@ -147,67 +147,72 @@ if (popup) {
 
     }
 
-});
+    /* ==========================
+       CONTACT FORM
+    ========================== */
 
-/* ==========================
-   CONTACT FORM
-========================== */
-const contactForm = document.getElementById("contactForm");
+    const contactForm = document.getElementById("contactForm");
 
-console.log("Contact Form:", contactForm);
+    console.log("Contact Form:", contactForm);
 
-if (contactForm) {
+    if (contactForm) {
 
-    contactForm.addEventListener("submit", async (e) => {
+        contactForm.addEventListener("submit", async (e) => {
 
-        console.log("Contact form submitted");
+            console.log("Contact form submitted");
 
-        e.preventDefault();
+            e.preventDefault();
 
-        const data = {
-            name: document.getElementById("contactName").value,
-            email: document.getElementById("contactEmail").value,
-            phone: document.getElementById("contactPhone").value,
-            message: document.getElementById("contactMessage").value
-        };
+            const data = {
+                name: document.getElementById("contactName").value,
+                email: document.getElementById("contactEmail").value,
+                phone: document.getElementById("contactPhone").value,
+                message: document.getElementById("contactMessage").value
+            };
 
-        console.log("Sending Data:", data);
+            console.log("Sending Data:", data);
 
-        try {
+            try {
 
-            const response = await fetch(
-                "https://api.skillitize.com/contact_submit.php",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
+                const response = await fetch(
+                    "https://api.skillitize.com/contact_submit.php",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+                console.log("Response:", response);
+
+                const result = await response.json();
+
+                console.log("Result:", result);
+
+                if (result.success) {
+
+                    alert("Message sent successfully!");
+                    contactForm.reset();
+
+                } else {
+
+                    alert("Submission failed.");
                 }
-            );
 
-            console.log("Response:", response);
+            } catch (error) {
 
-            const result = await response.json();
+                console.error("Fetch Error:", error);
 
-            console.log("Result:", result);
-
-            if (result.success) {
-
-                alert("Message sent successfully!");
-                contactForm.reset();
-
-            } else {
-
-                alert("Submission failed.");
             }
 
-        } catch (error) {
+        });
 
-            console.error("Fetch Error:", error);
+    } else {
 
-        }
+        console.error("contactForm element not found in the DOM. Check that the form's id is exactly 'contactForm' and that this script runs after the form exists.");
 
-    });
+    }
 
-}
+});
