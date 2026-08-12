@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Programming | Skillitize</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f7f9fc; color: #1b1b1b; line-height: 1.6; }
+a { text-decoration: none; }
+.header { width: 100%; min-height: 80px; padding: 0 6%; background: #ffffff; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1000; }
+.logo-container img { width: 150px; height: auto; display: block; }
+.nav ul { list-style: none; display: flex; align-items: center; gap: 30px; }
+.nav ul li a { color: #0c0000; font-size: 15px; font-weight: 500; transition: 0.3s; }
+.nav ul li a:hover { color: #7c3aed; }
+.hero-btn { display: inline-block; padding: 12px 22px; border-radius: 7px; background: #7c3aed; color: #ffffff; font-size: 14px; font-weight: 600; transition: 0.3s; }
+.hero-btn:hover { background: #6d28d9; transform: translateY(-2px); }
+.hamburger { display: none; background: transparent; border: none; cursor: pointer; }
+.hamburger span { display: block; width: 25px; height: 3px; background: #ffffff; margin: 5px 0; border-radius: 5px; }
+.detail-hero { background: linear-gradient(135deg, #111827 0%, #312e81 50%, #4c1d95 100%); padding: 70px 7% 60px; color: #ffffff; }
+.breadcrumb { font-size: 13px; color: #c4b5fd; margin-bottom: 18px; }
+.breadcrumb a { color: #c4b5fd; }
+.breadcrumb a:hover { color: #ffffff; }
+.detail-hero-text { max-width: 700px; }
+.detail-category { display: inline-block; background: #ede9fe; color: #6d28d9; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 14px; }
+.limited-offer-badge { display: inline-block; background: #dc2626; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 12px; border-radius: 20px; margin-left: 8px; }
+.detail-hero-text h1 { font-size: 40px; line-height: 1.2; margin-bottom: 16px; }
+.detail-hero-text p { color: #e5e7eb; font-size: 16px; margin-bottom: 20px; }
+.detail-meta { display: flex; gap: 22px; flex-wrap: wrap; color: #d1d5db; font-size: 14px; }
+.detail-section { padding: 60px 7%; display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+.detail-main { flex: 2; min-width: 300px; }
+.detail-image { width: 100%; height: 320px; border-radius: 16px; overflow: hidden; margin-bottom: 35px; }
+.detail-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.detail-main h2 { font-size: 24px; color: #111827; margin: 30px 0 14px; }
+.detail-main h2:first-child { margin-top: 0; }
+.detail-main p { color: #4b5563; font-size: 15px; margin-bottom: 12px; }
+.highlights-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 10px; }
+.highlights-list li { display: flex; align-items: flex-start; gap: 10px; color: #374151; font-size: 14px; background: #ffffff; border: 1px solid #e5e7eb; padding: 12px 14px; border-radius: 10px; }
+.highlights-list li .tick { color: #16a34a; font-weight: 800; }
+.curriculum-summary { font-size: 13px; color: #6b7280; margin-bottom: 18px; }
+.curriculum { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: #ffffff; }
+.module { border-bottom: 1px solid #e5e7eb; }
+.module:last-child { border-bottom: none; }
+.module-header { width: 100%; background: #ffffff; border: none; text-align: left; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 12px; }
+.module-header:hover { background: #f9fafb; }
+.module-header-left { display: flex; align-items: center; gap: 14px; }
+.module-number { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #ede9fe; color: #6d28d9; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.module-title-wrap h4 { font-size: 15px; color: #111827; margin-bottom: 3px; }
+.module-title-wrap span { font-size: 12px; color: #9ca3af; }
+.module-toggle-icon { font-size: 18px; color: #7c3aed; transition: transform 0.25s ease; flex-shrink: 0; }
+.module.open .module-toggle-icon { transform: rotate(45deg); }
+.module-lessons { list-style: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #f9fafb; padding: 0 20px; }
+.module.open .module-lessons { max-height: 400px; padding: 6px 20px 16px; }
+.module-lessons li { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #4b5563; padding: 7px 0; }
+.module-lessons li::before { content: "▸"; color: #7c3aed; font-size: 12px; }
+.detail-sidebar { flex: 1; min-width: 280px; position: sticky; top: 20px; }
+.sidebar-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 28px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); }
+.sidebar-price .current-price { font-size: 30px; font-weight: 800; color: #111827; display: block; }
+.sidebar-price .old-price { font-size: 14px; color: #9ca3af; text-decoration: line-through; }
+.sidebar-card .book-btn { display: block; text-align: center; width: 100%; padding: 14px; background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; margin: 18px 0 10px; cursor: pointer; transition: 0.3s; }
+.sidebar-card .book-btn:hover { background: #6d28d9; }
+.sidebar-note { text-align: center; font-size: 12px; color: #9ca3af; margin-bottom: 18px; }
+.sidebar-list { list-style: none; border-top: 1px solid #e5e7eb; padding-top: 16px; }
+.sidebar-list li { display: flex; justify-content: space-between; font-size: 13px; color: #4b5563; padding: 7px 0; }
+.sidebar-list li span:first-child { color: #6b7280; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(17, 24, 39, 0.6); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.active { display: flex; }
+.modal-box { background: #ffffff; border-radius: 16px; width: 100%; max-width: 440px; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
+.modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 22px; color: #9ca3af; cursor: pointer; line-height: 1; }
+.modal-close:hover { color: #111827; }
+.modal-box h3 { font-size: 21px; color: #111827; margin-bottom: 6px; }
+.modal-box .modal-sub { font-size: 13px; color: #6b7280; margin-bottom: 22px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+.form-group input, .form-group select { width: 100%; padding: 11px 13px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; font-family: inherit; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #7c3aed; }
+.form-error { font-size: 12px; color: #dc2626; margin-top: 4px; display: none; }
+.form-group.invalid input, .form-group.invalid select { border-color: #dc2626; }
+.form-group.invalid .form-error { display: block; }
+.modal-submit-btn { width: 100%; padding: 13px; background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 6px; transition: 0.3s; }
+.modal-submit-btn:hover { background: #6d28d9; }
+.booking-success { display: none; text-align: center; padding: 10px 0 4px; }
+.booking-success .success-icon { width: 56px; height: 56px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 28px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.booking-success h3 { margin-bottom: 8px; }
+.booking-success p { font-size: 14px; color: #6b7280; margin-bottom: 22px; }
+.booking-success .modal-submit-btn { background: #111827; }
+.footer { background: #111827; color: #ffffff; padding: 40px 7%; text-align: center; }
+.footer p { color: #9ca3af; font-size: 14px; }
+@media (max-width: 1000px) {
+  .nav ul { gap: 18px; }
+  .header { padding: 0 4%; }
+}
+@media (max-width: 750px) {
+  .header { min-height: 70px; }
+  .nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #111827; padding: 20px; }
+  .nav.active { display: block; }
+  .nav ul { flex-direction: column; gap: 18px; }
+  .header-btns { display: none; }
+  .hamburger { display: block; }
+  .detail-hero { padding: 50px 6% 45px; }
+  .detail-hero-text h1 { font-size: 30px; }
+  .detail-section { padding: 45px 6%; flex-direction: column; }
+  .highlights-list { grid-template-columns: 1fr; }
+  .detail-sidebar { position: static; width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <img src="Images/White PNG.png" alt="Skillitize Logo">
+  </div>
+
+  <nav class="nav" id="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#blogs">Blogs</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#testimonials">Testimonials</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-btns">
+    <a href="coming.html" class="hero-btn">
+      Get Started
+    </a>
+  </div>
+
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
+
+<section class="detail-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="courses.html">Courses</a> / <span>Python Programming</span></div>
+  <div class="detail-hero-text">
+    <span class="detail-category">Programming</span><span class="limited-offer-badge" style="display:none;">Limited Offer</span>
+    <h1>Python Programming</h1>
+    <p>Build a strong foundation in Python from first principles.</p>
+    <div class="detail-meta">
+      <span>⏱ 3 Months</span>
+      <span>🎓 Beginner</span>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="detail-main">
+    <div class="detail-image">
+      <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=1200&q=60" alt="Python Programming">
+    </div>
+
+    <h2>About This Course</h2>
+    <p>Build a strong foundation in Python programming, problem solving, automation and application development. Great as a first programming course or a refresher for developers moving into Python.</p>
+
+    <h2>What You'll Learn</h2>
+    <ul class="highlights-list">
+      <li><span class="tick">✓</span><span>Core Python syntax</span></li>
+      <li><span class="tick">✓</span><span>Data structures</span></li>
+      <li><span class="tick">✓</span><span>File handling & automation</span></li>
+      <li><span class="tick">✓</span><span>Object-oriented programming</span></li>
+      <li><span class="tick">✓</span><span>Working with APIs</span></li>
+      <li><span class="tick">✓</span><span>Mini automation project</span></li>
+    </ul>
+
+    <h2>Course Curriculum</h2>
+    <p class="curriculum-summary">4 modules • 3 Months total</p>
+    <div class="curriculum">
+      <div class="module open"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">1</div><div class="module-title-wrap"><h4>Python Basics</h4><span>Weeks 1-3 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Variables, loops & conditionals</li><li>Functions basics</li><li>Working with strings</li></ul></div>
+      <div class="module"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">2</div><div class="module-title-wrap"><h4>Data Structures & OOP</h4><span>Weeks 4-6 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Lists, dicts & sets</li><li>Classes & objects</li><li>Inheritance basics</li></ul></div>
+      <div class="module"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">3</div><div class="module-title-wrap"><h4>File Handling & Automation</h4><span>Weeks 7-9 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Reading & writing files</li><li>Automating everyday tasks</li><li>Error handling</li></ul></div>
+      <div class="module"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">4</div><div class="module-title-wrap"><h4>APIs & Mini Project</h4><span>Weeks 10-12 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Consuming REST APIs</li><li>Working with JSON</li><li>Final mini project</li></ul></div>
+    </div>
+  </div>
+
+  <aside class="detail-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-price">
+        <span class="current-price">₹5,999</span>
+        <span class="old-price">₹8,999</span>
+      </div>
+      <button class="book-btn" id="open-booking-btn">Book This Course</button>
+      <div class="sidebar-note">7-day money-back guarantee</div>
+      <ul class="sidebar-list">
+        <li><span>Duration</span><span>3 Months</span></li>
+        <li><span>Level</span><span>Beginner</span></li>
+        <li><span>Category</span><span>Programming</span></li>
+        <li><span>Certificate</span><span>Yes, on completion</span></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Skillitize. All Rights Reserved.</p>
+</footer>
+
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
+
+    <div id="booking-form-view">
+      <h3>Book This Course</h3>
+      <p class="modal-sub">Python Programming</p>
+
+      <form id="booking-form" novalidate>
+        <div class="form-group" id="group-name">
+          <label for="book-name">Full Name</label>
+          <input type="text" id="book-name" placeholder="Your full name">
+          <div class="form-error">Please enter your name.</div>
+        </div>
+
+        <div class="form-group" id="group-email">
+          <label for="book-email">Email Address</label>
+          <input type="email" id="book-email" placeholder="you@example.com">
+          <div class="form-error">Please enter a valid email.</div>
+        </div>
+
+        <div class="form-group" id="group-phone">
+          <label for="book-phone">Phone Number</label>
+          <input type="tel" id="book-phone" placeholder="10-digit mobile number">
+          <div class="form-error">Please enter a valid phone number.</div>
+        </div>
+
+        <div class="form-group" id="group-batch">
+          <label for="book-batch">Preferred Batch</label>
+          <select id="book-batch">
+            <option value="">Select a batch</option>
+            <option value="morning">Morning (9 AM - 12 PM)</option>
+            <option value="evening">Evening (6 PM - 9 PM)</option>
+            <option value="weekend">Weekend Only</option>
+          </select>
+          <div class="form-error">Please select a batch.</div>
+        </div>
+
+        <button type="submit" class="modal-submit-btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <div class="booking-success" id="booking-success-view">
+      <div class="success-icon">✓</div>
+      <h3 style="text-align:center;">Booking Received!</h3>
+      <p id="success-message">We've received your booking for this course. Our team will reach out shortly to confirm your seat.</p>
+      <button type="button" class="modal-submit-btn" id="close-success-btn">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const nav = document.querySelector(".nav");
+  hamburger.addEventListener("click", function () {
+    nav.classList.toggle("active");
+    const expanded = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", !expanded);
+  });
+
+  document.querySelectorAll(".module-header").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      btn.closest(".module").classList.toggle("open");
+    });
+  });
+
+  const courseTitle = "Python Programming";
+  const modal = document.getElementById("booking-modal");
+  const openBookingBtn = document.getElementById("open-booking-btn");
+  const closeModalBtn = document.getElementById("modal-close-btn");
+  const closeSuccessBtn = document.getElementById("close-success-btn");
+  const bookingForm = document.getElementById("booking-form");
+  const formView = document.getElementById("booking-form-view");
+  const successView = document.getElementById("booking-success-view");
+  const successMessage = document.getElementById("success-message");
+
+  function openModal() {
+    modal.classList.add("active");
+    formView.style.display = "block";
+    successView.style.display = "none";
+  }
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+
+  openBookingBtn.addEventListener("click", openModal);
+  closeModalBtn.addEventListener("click", closeModal);
+  closeSuccessBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  function setInvalid(groupId, isInvalid) {
+    document.getElementById(groupId).classList.toggle("invalid", isInvalid);
+  }
+
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nameVal = document.getElementById("book-name").value.trim();
+    const emailVal = document.getElementById("book-email").value.trim();
+    const phoneVal = document.getElementById("book-phone").value.trim();
+    const batchVal = document.getElementById("book-batch").value;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{10}$/;
+
+    let valid = true;
+    if (nameVal.length < 2) { setInvalid("group-name", true); valid = false; } else { setInvalid("group-name", false); }
+    if (!emailPattern.test(emailVal)) { setInvalid("group-email", true); valid = false; } else { setInvalid("group-email", false); }
+    if (!phonePattern.test(phoneVal)) { setInvalid("group-phone", true); valid = false; } else { setInvalid("group-phone", false); }
+    if (!batchVal) { setInvalid("group-batch", true); valid = false; } else { setInvalid("group-batch", false); }
+
+    if (!valid) return;
+
+    successMessage.textContent =
+      "Thanks " + nameVal + "! We've received your booking for \"" + courseTitle + "\" (" + batchVal + " batch). " +
+      "Our team will contact you at " + phoneVal + " or " + emailVal + " shortly to confirm your seat.";
+
+    formView.style.display = "none";
+    successView.style.display = "block";
+    bookingForm.reset();
+  });
+</script>
+
+</body>
+</html>

@@ -100,6 +100,8 @@ if (popup) {
                 name: document.getElementById("name").value,
                 email: document.getElementById("email").value,
                 phone: document.getElementById("phone").value,
+                college: document.getElementById("college").value,
+                collegeCourse: document.getElementById("collegeCourse").value,
                 course: document.getElementById("course").value,
                 message: document.getElementById("message").value
             };
@@ -216,3 +218,22 @@ if (popup) {
     }
 
 });
+
+// Mobile hamburger nav toggle
+const hamburger = document.querySelector(".hamburger");
+const nav = document.getElementById("main-nav");
+
+if (hamburger && nav) {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    hamburger.classList.toggle("open");
+  });
+
+  // close menu after tapping a link
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      hamburger.classList.remove("open");
+    });
+  });
+}
