@@ -19,6 +19,130 @@
 
   <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- ===========================================================
+       HEADER OVERRIDE — copied exactly from course.html
+       Kept here so index.html's header matches course.html
+       regardless of what's in style.css
+  =========================================================== -->
+  <style>
+    body{
+      padding-top:80px;
+    }
+
+    .header{
+      width:100%;
+      min-height:80px;
+      padding:0 6%;
+      background:#fafbfc;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+    }
+
+    .logo-container img{
+      width:150px;
+      height:auto;
+      display:block;
+    }
+
+    .nav ul{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap:30px;
+      margin:0;
+      padding:0;
+    }
+
+    .nav ul li a{
+      color:#020202;
+      font-size:15px;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav ul li a:hover{
+      color:#7c3aed;
+    }
+
+    .header-btns .hero-btn{
+      display:inline-block;
+      padding:12px 22px;
+      border-radius:7px;
+      background:#7c3aed;
+      color:#ffffff;
+      font-size:14px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .header-btns .hero-btn:hover{
+      background:#6d28d9;
+      transform:translateY(-2px);
+    }
+
+    .hamburger{
+      display:none;
+      background:transparent;
+      border:none;
+      cursor:pointer;
+    }
+
+    .hamburger span{
+      display:block;
+      width:25px;
+      height:3px;
+      background:#020202;
+      margin:5px 0;
+      border-radius:5px;
+    }
+
+    @media (max-width:1000px){
+      .nav ul{ gap:18px; }
+      .header{ padding:0 4%; }
+    }
+
+    @media (max-width:750px){
+      body{ padding-top:70px; }
+
+      .header{ min-height:70px; }
+
+      .nav{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:#ebecee;
+        padding:20px;
+      }
+
+      .nav.active{
+        display:block !important;
+        opacity:1 !important;
+        pointer-events:auto !important;
+}
+
+      .nav ul{
+        flex-direction:column;
+        gap:18px;
+      }
+
+      .header-btns{ display:none; }
+
+      .hamburger{ display:block; }
+    }
+
+    @media (max-width:480px){
+      .logo-container img{ width:125px; }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -43,7 +167,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   </nav>
 
   <div class="header-btns">
-    <a href="coming.html" class="hero-btn">
+    <a href="#" id="freeGuidance" class="header-btns">
       Get Started
     </a>
   </div>
@@ -71,7 +195,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         Quantum Computing is depth-first, not a mass-market job funnel.
       </p>
 
-      <a href="coming.html" class="hero-btn">Start Your Journey</a>
+      <a href="#" id="freeGuidance" class="hero-btn">Start Your Journey</a>
     </div>
 
   </div>
@@ -139,53 +263,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     </div>
 
-    <!-- POWER PLATFORM 
-
-    <div class="course-card">
-
-      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop">
-
-      <div class="course-content">
-
-        <span class="course-tag">Microsoft</span>
-
-        <h3>Power Platform</h3>
-
-        <p>
-          Build enterprise apps and automate workflows using
-          Power Apps and Power Automate.
-        </p>
-
-        <a href="course.html" class="course-view-btn">View Course</a>
-
-      </div>
-
-    </div>
-    -->
-<!--
-     AWS 
-
-    <div class="course-card">
-
-      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop">
-
-      <div class="course-content">
-
-        <span class="course-tag">Cloud</span>
-
-        <h3>AWS Cloud</h3>
-
-        <p>
-          Learn cloud infrastructure, EC2, S3, IAM and deployment
-          strategies from scratch.
-        </p>
-
-        <a href="course.html" class="course-view-btn">View Course</a>
-
-      </div>
-
-    </div>
--->
     <!-- GENERATIVE AI -->
 
     <div class="course-card">
@@ -698,6 +775,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   </div>
 </div>
 <script src="script.js"></script>
+
+<!-- Hamburger toggle — matched to course.html's exact logic -->
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const nav = document.querySelector(".nav");
+  if (hamburger && nav) {
+    hamburger.addEventListener("click", function () {
+      nav.classList.toggle("active");
+      const expanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", !expanded);
+    });
+  }
+</script>
+
  <!-- Chatbot -->
   
  <!-- Career Help Widget -->
