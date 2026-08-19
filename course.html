@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Courses | Skillitize</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: Arial, Helvetica, sans-serif; background: #f7f9fc; color: #1b1b1b; line-height: 1.6; }
@@ -41,14 +42,68 @@ a { text-decoration: none; }
 .course-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
 .course-price { color: #111827; }
 .course-price .current-price { display: block; font-size: 24px; font-weight: 800; }
-.course-price .old-price { font-size: 13px; color: #9ca3af; text-decoration: line-through; }
+.course-price .old-price { font-size: 13px; color: #e00404; text-decoration: line-through; }
 .know-more-btn { display: inline-block; padding: 11px 18px; background: #7c3aed; color: #ffffff; border-radius: 7px; font-size: 13px; font-weight: 700; transition: 0.3s; }
 .know-more-btn:hover { background: #6d28d9; }
 .courses-cta { margin: 0 7% 80px; padding: 60px 40px; border-radius: 20px; background: #111827; color: #ffffff; text-align: center; }
 .courses-cta h2 { font-size: 32px; margin-bottom: 12px; }
 .courses-cta p { color: #d1d5db; max-width: 600px; margin: 0 auto 25px; }
-.footer { background: #111827; color: #ffffff; padding: 40px 7%; text-align: center; }
-.footer p { color: #9ca3af; font-size: 14px; }
+
+/* ===== FOOTER — matched to index.html ===== */
+footer{
+  background:#111827;
+  color:#fff;
+  padding:70px 8% 30px;
+}
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:40px;
+  margin-bottom:40px;
+}
+footer h3,
+footer h4{
+  margin-bottom:16px;
+  font-weight:700;
+}
+footer p,
+footer a{
+  color:#cbd5e1;
+  line-height:1.8;
+}
+footer a{
+  display:block;
+  margin-bottom:10px;
+}
+.copy{
+  text-align:center;
+  color:#94a3b8;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:24px;
+}
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin:30px 0;
+}
+.social-icons a{
+  width:50px;
+  height:50px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  transition:all 0.3s ease;
+}
+.social-icons a:hover{
+  transform:translateY(-5px);
+  background:linear-gradient(135deg,#00c6ff,#7f5cff);
+}
+
 @media (max-width: 1000px) {
 .courses-grid { grid-template-columns: repeat(2, 1fr); }
 .nav ul { gap: 18px; }
@@ -88,10 +143,10 @@ a { text-decoration: none; }
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="#courses-section">Courses</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#blogs">Blogs</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#blogs">Blogs</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#testimonials">Testimonials</a></li>
     </ul>
   </nav>
 
@@ -119,7 +174,23 @@ a { text-decoration: none; }
 <h2>Explore Our Courses</h2>
 <p>Learn from carefully designed programs built for real-world skills and career growth.</p>
 </div>
+
 <div class="courses-grid">
+
+<div class="course-card">
+<div class="course-image">
+<img src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?auto=format&fit=crop&w=800&q=60" alt="Data Science &amp; AI Analytics"></div>
+<div class="course-content">
+<span class="course-category">Data Science</span><span class="limited-offer-badge">Limited Offer</span>
+<h3>Data Science &amp; AI Analytics</h3>
+<p class="course-description">Learn Python, statistics, data analysis, visualization and applied AI/machine learning through practical, real-world projects.</p>
+<div class="course-meta"><span>⏱ 6 Months</span><span>🎓 Intermediate</span></div>
+<div class="course-footer">
+<div class="course-price"><span class="current-price">₹7,999</span><span class="old-price">₹12,999</span></div>
+<a href="datascience.html" class="know-more-btn">Know More</a>
+</div>
+</div>
+</div>
 <div class="course-card">
 <div class="course-image"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60" alt="Full Stack Web Development"></div>
 <div class="course-content">
@@ -133,20 +204,7 @@ a { text-decoration: none; }
 </div>
 </div>
 </div>
-<div class="course-card">
-<div class="course-image">
-<img src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?auto=format&fit=crop&w=800&q=60" alt="Data Science &amp; AI Analytics"></div>
-<div class="course-content">
-<span class="course-category">Data Science</span><span class="limited-offer-badge">Limited Offer</span>
-<h3>Data Science &amp; AI Analytics</h3>
-<p class="course-description">Learn Python, statistics, data analysis, visualization and applied AI/machine learning through practical, real-world projects.</p>
-<div class="course-meta"><span>⏱ 5 Months</span><span>🎓 Intermediate</span></div>
-<div class="course-footer">
-<div class="course-price"><span class="current-price">₹7,999</span><span class="old-price">₹12,999</span></div>
-<a href="datascience.html" class="know-more-btn">Know More</a>
-</div>
-</div>
-</div>
+
 <div class="course-card">
 <div class="course-image"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=60" alt="Digital Marketing"></div>
 <div class="course-content">
@@ -206,7 +264,61 @@ a { text-decoration: none; }
 <p>Choose the course that matches your goals and start building the skills that can shape your future.</p>
 <a href="coming.html" class="hero-btn">Get Started</a>
 </section>
-<footer class="footer"><p>© 2026 Skillitize. All Rights Reserved.</p></footer>
+
+<!-- FOOTER — matched to index.html -->
+<footer>
+
+    <div class="footer-container">
+
+      <div>
+        <h3>Skillitize</h3>
+        <p>Empowering careers through practical learning and mentorship.</p>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#premium-content">Why Us</a>
+        <a href="#">IT Training(Ranchi)</a>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+
+      <div>
+        <h4>Resourses</h4>
+        <a href="index.html#blogs">Blogs</a>
+        <a href="#">Smart Apply</a>
+        <a href="#">Student Success Story</a>
+        <a href="#">FAQ</a>
+        <a href="#">Term of Services</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+
+    </div>
+
+    <div class="social-icons">
+
+    <a href="https://www.facebook.com/share/1C118ms9qn/?mibextid=wwXIfr" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://x.com/skillitize" target="_blank">
+        <i class="fab fa-x-twitter"></i>
+    </a>
+
+    <a href="https://www.linkedin.com/company/skillitize-india/about/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+
+    <a href="https://instagram.com/skillitize" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+</div>
+
+<p class="copy">© 2026 Skillitize. All rights reserved.</p>
+
+</footer>
+
 <script>
 const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
@@ -216,5 +328,6 @@ const expanded = hamburger.getAttribute("aria-expanded") === "true";
 hamburger.setAttribute("aria-expanded", !expanded);
 });
 </script>
+
 </body>
 </html>
