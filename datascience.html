@@ -144,7 +144,7 @@ a { text-decoration: none; }
     <h1>Data Science &amp; AI Analytics</h1>
     <p>Turn raw data into insight with Python, statistics and applied AI.</p>
     <div class="detail-meta">
-      <span>⏱ 5 Months</span>
+      <span>⏱ 6 Months</span>
       <span>🎓 Intermediate</span>
     </div>
   </div>
@@ -170,7 +170,7 @@ a { text-decoration: none; }
     </ul>
 
     <h2>Course Curriculum</h2>
-    <p class="curriculum-summary">5 modules • 5 Months total</p>
+    <p class="curriculum-summary">6 modules • 6 Months total</p>
     <div class="curriculum">
       <div class="module open"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">1</div><div class="module-title-wrap"><h4>Python & Statistics Foundations</h4><span>Weeks 1-4 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Python for data analysis</li><li>Descriptive statistics</li><li>Probability basics</li></ul></div>
       <div class="module"><button type="button" class="module-header"><div class="module-header-left"><div class="module-number">2</div><div class="module-title-wrap"><h4>Data Analysis & Visualization</h4><span>Weeks 5-8 • 3 lessons</span></div></div><span class="module-toggle-icon">+</span></button><ul class="module-lessons"><li>Pandas & NumPy</li><li>Data cleaning techniques</li><li>Charting with Matplotlib/Seaborn</li></ul></div>
@@ -252,6 +252,7 @@ a { text-decoration: none; }
     </div>
   </div>
 </div>
+
 <script>
   const hamburger = document.querySelector(".hamburger");
   const nav = document.querySelector(".nav");
@@ -266,7 +267,117 @@ a { text-decoration: none; }
       btn.closest(".module").classList.toggle("open");
     });
   });
-  
+
+  const courseTitle = "Data Science & AI Analytics";
+  const modal = document.getElementById("booking-modal");
+  const openBookingBtn = document.getElementById("open-booking-btn");
+  const closeModalBtn = document.getElementById("modal-close-btn");
+  const closeSuccessBtn = document.getElementById("close-success-btn");
+  const bookingForm = document.getElementById("booking-form");
+  const formView = document.getElementById("booking-form-view");
+  const successView = document.getElementById("booking-success-view");
+  const successMessage = document.getElementById("success-message");
+
+  function openModal() {
+    modal.classList.add("active");
+    formView.style.display = "block";
+    successView.style.display = "none";
+  }
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+
+  openBookingBtn.addEventListener("click", openModal);
+  closeModalBtn.addEventListener("click", closeModal);
+  closeSuccessBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  function setInvalid(groupId, isInvalid) {
+    document.getElementById(groupId).classList.toggle("invalid", isInvalid);
+  }
+
+  bookingForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const nameVal = document.getElementById("book-name").value.trim();
+    const emailVal = document.getElementById("book-email").value.trim();
+    const phoneVal = document.getElementById("book-phone").value.trim();
+    const batchVal = document.getElementById("book-batch").value;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{10}$/;
+
+    let valid = true;
+    if (nameVal.length < 2) { setInvalid("group-name", true); valid = false; } else { setInvalid("group-name", false); }
+    if (!emailPattern.test(emailVal)) { setInvalid("group-email", true); valid = false; } else { setInvalid("group-email", false); }
+    if (!phonePattern.test(phoneVal)) { setInvalid("group-phone", true); valid = false; } else { setInvalid("group-phone", false); }
+    if (!batchVal) { setInvalid("group-batch", true); valid = false; } else { setInvalid("group-batch", false); }
+
+    if (!valid) return;
+
+    const submitBtn = bookingForm.querySelector(".modal-submit-btn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    const data = {
+      courseTitle: courseTitle,
+      fullName: nameVal,
+      email: emailVal,
+      phone: phoneVal,
+      batch: batchVal
+    };
+
+    try {
+
+      const response = await fetch(
+        "https://api.skillitize.com/book.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        }
+      );
+
+      const result = await response.json();
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Confirm Booking";
+
+      if (result.success) {
+
+        successMessage.textContent = result.message;
+        formView.style.display = "none";
+        successView.style.display = "block";
+        bookingForm.reset();
+
+      } else if (result.errors) {
+
+        if (result.errors.fullName) setInvalid("group-name", true);
+        if (result.errors.email) setInvalid("group-email", true);
+        if (result.errors.phone) setInvalid("group-phone", true);
+        if (result.errors.batch) setInvalid("group-batch", true);
+
+      } else {
+
+        alert(result.message || "Something went wrong. Please try again.");
+
+      }
+
+    } catch (error) {
+
+      console.error("Booking Fetch Error:", error);
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Confirm Booking";
+      alert("Network error. Please try again.");
+
+    }
+
+  });
 </script>
 
 </body>
