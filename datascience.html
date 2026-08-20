@@ -115,7 +115,7 @@ a { text-decoration: none; }
   <nav class="nav" id="main-nav">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="courses.html">Courses</a></li>
+      <li><a href="course.html">Courses</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#blogs">Blogs</a></li>
       <li><a href="index.html#contact">Contact</a></li>
@@ -138,7 +138,7 @@ a { text-decoration: none; }
 </header>
 
 <section class="detail-hero">
-  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="courses.html">Courses</a> / <span>Data Science &amp; AI Analytics</span></div>
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="course.html">Courses</a> / <span>Data Science &amp; AI Analytics</span></div>
   <div class="detail-hero-text">
     <span class="detail-category">Data Science</span><span class="limited-offer-badge">Limited Offer</span>
     <h1>Data Science &amp; AI Analytics</h1>
@@ -252,7 +252,6 @@ a { text-decoration: none; }
     </div>
   </div>
 </div>
-
 <script>
   const hamburger = document.querySelector(".hamburger");
   const nav = document.querySelector(".nav");
@@ -267,64 +266,7 @@ a { text-decoration: none; }
       btn.closest(".module").classList.toggle("open");
     });
   });
-
-  const courseTitle = "Data Science & AI Analytics";
-  const modal = document.getElementById("booking-modal");
-  const openBookingBtn = document.getElementById("open-booking-btn");
-  const closeModalBtn = document.getElementById("modal-close-btn");
-  const closeSuccessBtn = document.getElementById("close-success-btn");
-  const bookingForm = document.getElementById("booking-form");
-  const formView = document.getElementById("booking-form-view");
-  const successView = document.getElementById("booking-success-view");
-  const successMessage = document.getElementById("success-message");
-
-  function openModal() {
-    modal.classList.add("active");
-    formView.style.display = "block";
-    successView.style.display = "none";
-  }
-  function closeModal() {
-    modal.classList.remove("active");
-  }
-
-  openBookingBtn.addEventListener("click", openModal);
-  closeModalBtn.addEventListener("click", closeModal);
-  closeSuccessBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) closeModal();
-  });
-
-  function setInvalid(groupId, isInvalid) {
-    document.getElementById(groupId).classList.toggle("invalid", isInvalid);
-  }
-
-  bookingForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const nameVal = document.getElementById("book-name").value.trim();
-    const emailVal = document.getElementById("book-email").value.trim();
-    const phoneVal = document.getElementById("book-phone").value.trim();
-    const batchVal = document.getElementById("book-batch").value;
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phonePattern = /^[0-9]{10}$/;
-
-    let valid = true;
-    if (nameVal.length < 2) { setInvalid("group-name", true); valid = false; } else { setInvalid("group-name", false); }
-    if (!emailPattern.test(emailVal)) { setInvalid("group-email", true); valid = false; } else { setInvalid("group-email", false); }
-    if (!phonePattern.test(phoneVal)) { setInvalid("group-phone", true); valid = false; } else { setInvalid("group-phone", false); }
-    if (!batchVal) { setInvalid("group-batch", true); valid = false; } else { setInvalid("group-batch", false); }
-
-    if (!valid) return;
-
-    successMessage.textContent =
-      "Thanks " + nameVal + "! We've received your booking for \"" + courseTitle + "\" (" + batchVal + " batch). " +
-      "Our team will contact you at " + phoneVal + " or " + emailVal + " shortly to confirm your seat.";
-
-    formView.style.display = "none";
-    successView.style.display = "block";
-    bookingForm.reset();
-  });
+  
 </script>
 
 </body>
