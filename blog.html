@@ -1,113 +1,577 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Careeroot Blogs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Skillitize Blog</title>
+
+    <meta name="description"
+          content="Skillitize career insights and technology guides.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f8fc;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        /* ==========================
+           HEADER
+        ========================== */
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #4f46e5;
+        }
+
+        /* ==========================
+           ARTICLE
+        ========================== */
+
+        .blog-wrapper {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .blog-article {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .blog-title {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .blog-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .blog-image {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 30px;
+        }
+
+        .blog-summary {
+            font-size: 19px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .blog-content {
+            font-size: 17px;
+            color: #333;
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           LOADING
+        ========================== */
+
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 18px;
+        }
+
+        /* ==========================
+           ERROR
+        ========================== */
+
+        .error {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .error h2 {
+            margin-bottom: 10px;
+        }
+
+        .error a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            .blog-wrapper {
+                margin: 25px auto;
+            }
+
+            .blog-article {
+                padding: 25px;
+            }
+
+            .blog-title {
+                font-size: 30px;
+            }
+
+            .blog-summary {
+                font-size: 17px;
+            }
+
+            .blog-content {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="logo">
-    <img src="Logo/skillitizelogo.png" alt="skillitizelogo">
-  </div>
-  <!-- for hambuerger menu-->
-  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
 
-  <nav id="main-nav" class="nav" >
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="blog.html">Blogs</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-      
-    </ul>
-  </nav>
-</header>
+    <!-- ==========================
+         HEADER
+    ========================== -->
 
-<!-- BLOG PAGE SECTION -->
-<section class="blog-page">
+    <header>
 
-  <div class="blog-page-container">
+        <a href="index.html" class="logo">
+            SKILLITIZE
+        </a>
 
-    <h1>Career Insights & Industry Guides</h1>
+    </header>
 
-    <!-- BLOG 1 -->
-    <article class="blog-full">
-      <h2>How to Become a Data Analyst in 2026</h2>
-      <p>
-        The demand for Data Analysts is growing rapidly across industries.
-        Companies today rely heavily on data-driven decision making.
-      </p>
-      <p>
-        To become a Data Analyst, you must master:
-        • Excel & SQL  
-        • Data Visualization (Power BI / Tableau)  
-        • Python basics  
-        • Real-world projects  
-      </p>
-      <p>
-        Build at least 3 strong projects and practice solving business
-        case studies. Focus on problem-solving rather than just tools.
-      </p>
-    </article>
 
-    <!-- BLOG 2 -->
-    <article class="blog-full">
-      <h2>DevOps Roadmap for Beginners</h2>
-      <p>
-        DevOps combines development and operations to improve software delivery speed.
-      </p>
-      <p>
-        Start with:
-        • Linux fundamentals  
-        • Git & GitHub  
-        • Docker  
-        • CI/CD concepts  
-        • Cloud (AWS or Azure)
-      </p>
-      <p>
-        Build mini deployment projects to understand automation.
-        Companies prefer practical DevOps knowledge.
-      </p>
-    </article>
 
-    <!-- BLOG 3 -->
-    <article class="blog-full">
-      <h2>Top Skills Companies Look for in Freshers</h2>
-      <p>
-        Recruiters don't just look at degrees. They look for:
-      </p>
-      <p>
-        • Problem-solving ability  
-        • Communication skills  
-        • Practical project experience  
-        • Adaptability  
-      </p>
-      <p>
-        Focus on building confidence and real portfolio projects
-        to stand out from the crowd.
-      </p>
-    </article>
+    <!-- ==========================
+         BLOG
+    ========================== -->
 
-  </div>
+    <main class="blog-wrapper">
 
-</section>
+        <a href="index.html#blogs"
+           class="back-btn">
+            ← Back to Articles
+        </a>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Careeroot. All Rights Reserved.</p>
-</footer>
 
-<script src="js/hammenu.js"></script>
+        <!-- Loading -->
+
+        <div id="loading"
+             class="loading">
+
+            Loading article...
+
+        </div>
+
+
+        <!-- Error -->
+
+        <div id="error"
+             class="error"
+             style="display:none;">
+
+            <h2>
+                Article not found
+            </h2>
+
+            <p>
+                The article you're looking for could not be loaded.
+            </p>
+
+            <a href="index.html#blogs">
+                ← Back to Articles
+            </a>
+
+        </div>
+
+
+        <!-- Article -->
+
+        <article id="blogArticle"
+                 class="blog-article"
+                 style="display:none;">
+
+            <h1 id="blogTitle"
+                class="blog-title">
+            </h1>
+
+
+            <div id="blogDate"
+                 class="blog-date">
+            </div>
+
+
+            <img id="blogImage"
+                 class="blog-image"
+                 style="display:none;"
+                 alt="">
+
+
+            <div id="blogSummary"
+                 class="blog-summary">
+            </div>
+
+
+            <div id="blogContent"
+                 class="blog-content">
+            </div>
+
+        </article>
+
+    </main>
+
+
+
+    <!-- ==========================
+         BLOG JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadBlog
+        );
+
+
+        async function loadBlog() {
+
+            const loading =
+                document.getElementById("loading");
+
+            const error =
+                document.getElementById("error");
+
+            const article =
+                document.getElementById("blogArticle");
+
+
+            try {
+
+                /*
+                 * Get slug from URL
+                 *
+                 * Example:
+                 *
+                 * blog.html?slug=data-analytics
+                 */
+
+                const params =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+
+                const slug =
+                    params.get("slug");
+
+
+                /*
+                 * Check slug
+                 */
+
+                if (!slug) {
+
+                    throw new Error(
+                        "No blog slug provided."
+                    );
+
+                }
+
+
+                console.log(
+                    "Loading blog slug:",
+                    slug
+                );
+
+
+                /*
+                 * Get blogs from API
+                 */
+
+                const response =
+                    await fetch(
+                        "https://api.skillitize.com/blog/get_posts.php"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "API returned HTTP " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Blog API:",
+                    data
+                );
+
+
+                /*
+                 * Validate API
+                 */
+
+                if (
+                    !data ||
+                    data.success !== true ||
+                    !Array.isArray(data.posts)
+                ) {
+
+                    throw new Error(
+                        "Invalid API response."
+                    );
+
+                }
+
+
+                /*
+                 * Find requested blog
+                 */
+
+                const blog =
+                    data.posts.find(
+                        post =>
+                            post.slug === slug
+                    );
+
+
+                /*
+                 * Blog doesn't exist
+                 */
+
+                if (!blog) {
+
+                    throw new Error(
+                        "Blog not found."
+                    );
+
+                }
+
+
+                /*
+                 * TITLE
+                 */
+
+                document.getElementById(
+                    "blogTitle"
+                ).textContent =
+                    blog.title ||
+                    "Untitled Article";
+
+
+                /*
+                 * DATE
+                 */
+
+                const dateElement =
+                    document.getElementById(
+                        "blogDate"
+                    );
+
+
+                if (blog.created_at) {
+
+                    const date =
+                        new Date(
+                            blog.created_at
+                        );
+
+
+                    dateElement.textContent =
+                        date.toLocaleDateString(
+                            "en-IN",
+                            {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
+                            }
+                        );
+
+                } else {
+
+                    dateElement.textContent = "";
+
+                }
+
+
+                /*
+                 * IMAGE
+                 */
+
+                const image =
+                    document.getElementById(
+                        "blogImage"
+                    );
+
+
+                if (blog.image_url) {
+
+                    image.src =
+                        blog.image_url;
+
+                    image.alt =
+                        blog.title ||
+                        "Skillitize Blog";
+
+                    image.style.display =
+                        "block";
+
+                }
+
+
+                /*
+                 * SUMMARY
+                 */
+
+                document.getElementById(
+                    "blogSummary"
+                ).textContent =
+                    blog.summary || "";
+
+
+                /*
+                 * CONTENT
+                 *
+                 * Your API stores paragraphs
+                 * separated by new lines.
+                 */
+
+                const content =
+                    document.getElementById(
+                        "blogContent"
+                    );
+
+
+                content.innerHTML = "";
+
+
+                const paragraphs =
+                    (blog.content || "")
+                        .split(/\n\s*\n/);
+
+
+                paragraphs.forEach(
+                    paragraph => {
+
+                        if (
+                            paragraph.trim()
+                        ) {
+
+                            const p =
+                                document.createElement(
+                                    "p"
+                                );
+
+
+                            p.textContent =
+                                paragraph.trim();
+
+
+                            content.appendChild(p);
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                 * Update browser title
+                 */
+
+                document.title =
+                    blog.title +
+                    " | Skillitize";
+
+
+                /*
+                 * Show article
+                 */
+
+                loading.style.display =
+                    "none";
+
+                article.style.display =
+                    "block";
+
+
+            } catch (err) {
+
+                console.error(
+                    "Blog Loading Error:",
+                    err
+                );
+
+
+                loading.style.display =
+                    "none";
+
+                error.style.display =
+                    "block";
+
+            }
+
+        }
+
+    </script>
+
 
 </body>
+
 </html>
+```
