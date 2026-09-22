@@ -1,119 +1,119 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const loginForm = document.getElementById("loginForm");
 
-    const loginButton =
-        document.getElementById("loginButton");
+const loginForm = document.getElementById("loginForm");
 
-    const loginMessage =
-        document.getElementById("loginMessage");
+const loginButton = document.getElementById("loginButton");
 
-
-    if (!loginForm) {
-        return;
-    }
+const loginMessage = document.getElementById("loginMessage");
 
 
-    loginForm.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-
-
-        const email =
-            document.getElementById("email").value.trim();
-
-        const password =
-            document.getElementById("password").value;
+if (!loginForm) {
+    return;
+}
 
 
-        loginButton.disabled = true;
+loginForm.addEventListener("submit", async (e) => {
 
-        loginButton.textContent = "Logging in...";
-
-        loginMessage.textContent = "";
+    e.preventDefault();
 
 
-        try {
+    const email =
+        document.getElementById("email").value.trim();
 
-            const response = await fetch(
-                "https://api.skillitize.com/login.php",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
-            );
+    const password =
+        document.getElementById("password").value;
 
 
-            const result =
-                await response.json();
+    loginButton.disabled = true;
+
+    loginButton.textContent = "Logging in...";
+
+    loginMessage.textContent = "";
 
 
-            if (result.success) {
+    try {
 
-                /*
-                Store token locally.
-                This token is what the admin
-                dashboard will use to call
-                protected APIs.
-                */
+        const response = await fetch(
+            "https://api.skillitize.com/login.php",
+            {
+                method: "POST",
 
-                localStorage.setItem(
-                    "skillitize_admin_token",
-                    result.token
-                );
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-
-                localStorage.setItem(
-                    "skillitize_admin",
-                    JSON.stringify(result.admin)
-                );
-
-
-                loginMessage.textContent =
-                    "Login successful. Redirecting...";
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "dashboard.html";
-
-                }, 500);
-
-
-            } else {
-
-                loginMessage.textContent =
-                    result.message ||
-                    "Login failed.";
-
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
             }
+        );
 
-        } catch (error) {
 
-            console.error(
-                "Login error:",
-                error
+        if (!response.ok) {
+
+            throw new Error(
+                "Server returned HTTP " + response.status
             );
-
-            loginMessage.textContent =
-                "Unable to connect to server.";
 
         }
 
 
-        loginButton.disabled = false;
+        const result = await response.json();
 
-        loginButton.textContent = "Login";
 
-    });
+        console.log("Login response:", result);
+
+
+        if (result.success) {
+
+            localStorage.setItem(
+                "skillitize_admin_token",
+                result.token
+            );
+
+
+            localStorage.setItem(
+                "skillitize_admin",
+                JSON.stringify(result.admin)
+            );
+
+
+            loginMessage.textContent =
+                "Login successful. Redirecting...";
+
+
+            setTimeout(() => {
+
+                window.location.href = "dashboard.html";
+
+            }, 500);
+
+
+        } else {
+
+            loginMessage.textContent =
+                result.message || "Login failed.";
+
+        }
+
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        loginMessage.textContent =
+            "Unable to connect to server.";
+
+    }
+
+
+    loginButton.disabled = false;
+
+    loginButton.textContent = "Login";
+
+});
+
 
 });
