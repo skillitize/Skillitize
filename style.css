@@ -1749,7 +1749,7 @@ footer a{
     );
     gap: 40px;
     justify-content: center;
-    align-items: stretch;
+    align-items:normal;
 }
 
     .course-card,
