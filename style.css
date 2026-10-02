@@ -1747,7 +1747,7 @@ footer a{
         auto-fill,
         minmax(300px, 340px)
     );
-    gap: 30px;
+    gap: 40px;
     justify-content: center;
     align-items: stretch;
 }
