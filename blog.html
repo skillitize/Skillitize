@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,18 +32,7 @@
            HEADER
         ========================== */
 
-        header {
-            background: white;
-            padding: 18px 7%;
-            border-bottom: 1px solid #eee;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            text-decoration: none;
-            color: #4f46e5;
-        }
+        
 
         /* ==========================
            ARTICLE
@@ -179,13 +167,170 @@
          HEADER
     ========================== -->
 
-    <header>
+    <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses | Skillitize</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f7f9fc; color: #1b1b1b; line-height: 1.6; }
+a { text-decoration: none; }
+.header { width: 100%; min-height: 80px; padding: 0 6%; background: #fafbfc; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1000; }
+.logo-container img { width: 150px; height: auto; display: block; }
+.nav ul { list-style: none; display: flex; align-items: center; gap: 30px; }
+.nav ul li a { color: #020202; font-size: 15px; font-weight: 500; transition: 0.3s; }
+.nav ul li a:hover { color: #7c3aed; }
+.hero-btn { display: inline-block; padding: 12px 22px; border-radius: 7px; background: #7c3aed; color: #ffffff; font-size: 14px; font-weight: 600; transition: 0.3s; }
+.hero-btn:hover { background: #6d28d9; transform: translateY(-2px); }
+.hamburger { display: none; background: transparent; border: none; cursor: pointer; }
+.hamburger span { display: block; width: 25px; height: 3px; background: #020202; margin: 5px 0; border-radius: 5px; }
+.courses-hero { background: linear-gradient(135deg, #9da2ad 0%, #312e81 50%, #4c1d95 100%); padding: 90px 7%; text-align: center; color: #ffffff; }
+.courses-hero .small-title { color: #c4b5fd; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+.courses-hero h1 { font-size: 48px; line-height: 1.15; margin-bottom: 20px; }
+.courses-hero p { max-width: 700px; margin: auto; color: #e5e7eb; font-size: 17px; }
+.courses-section { padding: 80px 7%; }
+.section-heading { text-align: center; margin-bottom: 50px; }
+.section-heading h2 { font-size: 36px; color: #111827; margin-bottom: 10px; }
+.section-heading p { color: #6b7280; font-size: 16px; }
+.courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.course-card { background: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); transition: 0.3s ease; display: flex; flex-direction: column; }
+.course-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10); }
+.course-image { height: 210px; width: 100%; overflow: hidden; position: relative; }
+.limited-offer-badge { display: inline-block; width: fit-content; background: #dc2626; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 12px; border-radius: 20px; margin-bottom: 12px; margin-left: 8px; }
+.course-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.course-card:hover .course-image img { transform: scale(1.05); }
+.course-content { padding: 25px; display: flex; flex-direction: column; flex: 1; }
+.course-category { display: inline-block; width: fit-content; background: #ede9fe; color: #6d28d9; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+.course-content h3 { font-size: 22px; color: #111827; margin-bottom: 12px; line-height: 1.3; }
+.course-description { color: #6b7280; font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+.course-meta { display: flex; gap: 18px; flex-wrap: wrap; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 13px; }
+.course-meta span { display: flex; align-items: center; gap: 5px; }
+.course-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.course-price { color: #111827; }
+.course-price .current-price { display: block; font-size: 24px; font-weight: 800; }
+.course-price .old-price { font-size: 13px; color: #e00404; text-decoration: line-through; }
+.know-more-btn { display: inline-block; padding: 11px 18px; background: #7c3aed; color: #ffffff; border-radius: 7px; font-size: 13px; font-weight: 700; transition: 0.3s; }
+.know-more-btn:hover { background: #6d28d9; }
+.courses-cta { margin: 0 7% 80px; padding: 60px 40px; border-radius: 20px; background: #111827; color: #ffffff; text-align: center; }
+.courses-cta h2 { font-size: 32px; margin-bottom: 12px; }
+.courses-cta p { color: #d1d5db; max-width: 600px; margin: 0 auto 25px; }
 
-        <a href="index.html" class="logo">
-            SKILLITIZE
-        </a>
+/* ===== FOOTER — matched to index.html ===== */
+footer{
+  background:#111827;
+  color:#fff;
+  padding:70px 8% 30px;
+}
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:40px;
+  margin-bottom:40px;
+}
+footer h3,
+footer h4{
+  margin-bottom:16px;
+  font-weight:700;
+}
+footer p,
+footer a{
+  color:#cbd5e1;
+  line-height:1.8;
+}
+footer a{
+  display:block;
+  margin-bottom:10px;
+}
+.copy{
+  text-align:center;
+  color:#94a3b8;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:24px;
+}
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin:30px 0;
+}
+.social-icons a{
+  width:50px;
+  height:50px;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  transition:all 0.3s ease;
+}
+.social-icons a:hover{
+  transform:translateY(-5px);
+  background:linear-gradient(135deg,#00c6ff,#7f5cff);
+}
 
-    </header>
+@media (max-width: 1000px) {
+.courses-grid { grid-template-columns: repeat(2, 1fr); }
+.nav ul { gap: 18px; }
+.header { padding: 0 4%; }
+}
+@media (max-width: 750px) {
+.header { min-height: 70px; }
+.nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #ebecee; padding: 20px; }
+.nav.active { display: block; }
+.nav ul { flex-direction: column; gap: 18px; }
+.header-btns { display: none; }
+.hamburger { display: block; }
+.courses-hero { padding: 65px 6%; }
+.courses-hero h1 { font-size: 36px; }
+.courses-section { padding: 60px 6%; }
+.courses-grid { grid-template-columns: 1fr; }
+.courses-cta { margin: 0 6% 60px; }
+}
+@media (max-width: 480px) {
+.logo-container img { width: 125px; }
+.courses-hero h1 { font-size: 31px; }
+.section-heading h2 { font-size: 29px; }
+.course-content { padding: 20px; }
+.course-footer { align-items: flex-end; }
+.course-price .current-price { font-size: 21px; }
+.know-more-btn { padding: 10px 14px; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo-container">
+    <img src="Images/White PNG.png" alt="Skillitize Logo">
+  </div>
+
+  <nav class="nav" id="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#courses-section">Courses</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#blogs">Blogs</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#testimonials">Testimonials</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-btns">
+    <a href="course.html" class="hero-btn">
+      Get Started
+    </a>
+  </div>
+
+  <!-- Hamburger button (visible only on mobile via CSS) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
 
 
 
