@@ -12,280 +12,51 @@
 <title>Skillitize - Blog Management</title>
 
 <style>
+.header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+.header h1 {
+    font-size: 24px;
+    margin: 0;
+}
 
-    body {
-        font-family: Arial, sans-serif;
-        background: #f5f7fb;
-        color: #222;
-    }
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
 
+.header button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.back-btn {
+    background: white;
+    color: #333;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white;
+}
+
+@media (max-width: 700px) {
     .header {
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-        color: white;
-        padding: 20px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
     }
-
-    .header h1 {
-        font-size: 24px;
-    }
-
-    .header-buttons {
-        display: flex;
-        gap: 10px;
-    }
-
-    .header button {
-        border: none;
-        padding: 10px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-    .back-btn {
-        background: white;
-        color: #333;
-    }
-
-    .logout-btn {
-        background: #ef4444;
-        color: white;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    .page-title {
-        margin-bottom: 25px;
-    }
-
-    .page-title h2 {
-        font-size: 28px;
-        margin-bottom: 8px;
-    }
-
-    .page-title p {
-        color: #666;
-    }
-
-    .card {
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-        margin-bottom: 30px;
-    }
-
-    .card h3 {
-        margin-bottom: 20px;
-        font-size: 21px;
-    }
-
-    .form-group {
-        margin-bottom: 18px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 7px;
-        font-weight: 600;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 7px;
-        font-size: 15px;
-        outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: #6366f1;
-    }
-
-    .form-group textarea {
-        min-height: 180px;
-        resize: vertical;
-    }
-
-    .slug-row {
-        display: flex;
-        gap: 10px;
-    }
-
-    .slug-row input {
-        flex: 1;
-    }
-
-    .generate-btn {
-        border: none;
-        background: #e5e7eb;
-        padding: 0 15px;
-        border-radius: 7px;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-    .publish-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .publish-row input {
-        width: 18px;
-        height: 18px;
-    }
-
-    .form-buttons {
-        display: flex;
-        gap: 10px;
-    }
-
-    .save-btn,
-    .cancel-btn {
-        border: none;
-        padding: 12px 22px;
-        border-radius: 7px;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-    .save-btn {
-        background: #2563eb;
-        color: white;
-    }
-
-    .cancel-btn {
-        background: #e5e7eb;
-        color: #333;
-    }
-
-    .message {
-        margin-top: 15px;
-        font-weight: 600;
-    }
-
-    .blogs-table-wrapper {
-        overflow-x: auto;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        padding: 14px 12px;
-        border-bottom: 1px solid #e5e7eb;
-        text-align: left;
-        vertical-align: middle;
-    }
-
-    th {
-        background: #f9fafb;
-        font-weight: 700;
-    }
-
-    .status {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    .published {
-        background: #dcfce7;
-        color: #166534;
-    }
-
-    .draft {
-        background: #fee2e2;
-        color: #991b1b;
-    }
-
-    .action-buttons {
-        display: flex;
-        gap: 7px;
-        flex-wrap: wrap;
-    }
-
-    .action-buttons button {
-        border: none;
-        padding: 7px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 13px;
-        font-weight: 600;
-    }
-
-    .edit-btn {
-        background: #dbeafe;
-        color: #1d4ed8;
-    }
-
-    .toggle-btn {
-        background: #fef3c7;
-        color: #92400e;
-    }
-
-    .delete-btn {
-        background: #fee2e2;
-        color: #b91c1c;
-    }
-
-    .empty-message {
-        text-align: center;
-        padding: 30px;
-        color: #777;
-    }
-
-    @media (max-width: 700px) {
-
-        .header {
-            padding: 15px;
-            flex-direction: column;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .container {
-            margin-top: 20px;
-            padding: 0 12px;
-        }
-
-        .card {
-            padding: 18px;
-        }
-
-        .slug-row {
-            flex-direction: column;
-        }
-
-        .generate-btn {
-            padding: 10px;
-        }
-
-    }
-
+}
 </style>
 ```
 
@@ -293,7 +64,7 @@
 
 <body>
 
-```
+
 <!-- ==========================
      HEADER
 ========================== -->
@@ -430,18 +201,52 @@
 
             <!-- CONTENT -->
 
-            <div class="form-group">
+           <div class="form-group">
 
-                <label for="content">
-                    Blog Content
-                </label>
+    <label>
+        Blog Content
+    </label>
 
-                <textarea
-                    id="content"
-                    placeholder="Write the complete blog content here..."
-                    required></textarea>
+    <div class="editor-toolbar">
 
-            </div>
+        <button type="button" onclick="formatText('bold')">
+            <b>B</b>
+        </button>
+
+        <button type="button" onclick="formatText('italic')">
+            <i>I</i>
+        </button>
+
+        <button type="button" onclick="formatText('formatBlock', 'H2')">
+            H2
+        </button>
+
+        <button type="button" onclick="formatText('formatBlock', 'H3')">
+            H3
+        </button>
+
+        <button type="button" onclick="formatText('insertUnorderedList')">
+            • List
+        </button>
+
+        <button type="button" onclick="addLink()">
+            🔗 Link
+        </button>
+
+        <button type="button" onclick="removeLink()">
+            Remove Link
+        </button>
+
+    </div>
+
+    <div
+        id="content"
+        class="content-editor"
+        contenteditable="true"
+        data-placeholder="Write the complete blog content here..."
+    ></div>
+
+</div>
 
 
 
