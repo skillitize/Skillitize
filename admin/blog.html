@@ -1529,21 +1529,76 @@ td {
         this.value = "p";
     });
 
-    document.getElementById("addLink").addEventListener("mousedown", (e) => e.preventDefault());
-    document.getElementById("addLink").addEventListener("click", () => {
-        restoreEditorSelection();
-        const selection = window.getSelection();
-        if (!selection || selection.rangeCount === 0 || selection.toString().trim() === "") {
-            alert("First select the text you want to make into a link.");
-            return;
-        }
-        let url = prompt("Enter the full URL (for example: https://skillitize.com):");
-        if (!url) return;
-        url = url.trim();
-        if (!/^(https?:\/\/|mailto:)/i.test(url)) url = "https://" + url;
-        document.execCommand("createLink", false, url);
-        saveEditorSelection();
-    });
+    document.getElementById("addLink").addEventListener("mousedown", (e) => {
+    e.preventDefault();
+});
+
+document.getElementById("addLink").addEventListener("click", () => {
+
+    restoreEditorSelection();
+
+    const selection = window.getSelection();
+
+    if (
+        !selection ||
+        selection.rangeCount === 0 ||
+        selection.toString().trim() === ""
+    ) {
+        alert("First select the text you want to make into a link.");
+        return;
+    }
+
+    const selectedText = selection.toString();
+
+    let url = prompt(
+        "Enter the full URL (for example: https://skillitize.com):"
+    );
+
+    if (!url) {
+        return;
+    }
+
+    url = url.trim();
+
+    if (!/^(https?:\/\/|mailto:)/i.test(url)) {
+        url = "https://" + url;
+    }
+
+    const editor = document.getElementById("content");
+
+    editor.focus();
+
+    restoreEditorSelection();
+
+    const sel = window.getSelection();
+
+    if (!sel || sel.rangeCount === 0) {
+        alert("Please select the text again.");
+        return;
+    }
+
+    const range = sel.getRangeAt(0);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    link.textContent = selectedText;
+
+    range.deleteContents();
+
+    range.insertNode(link);
+
+    range.setStartAfter(link);
+    range.collapse(true);
+
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    saveEditorSelection();
+});
 
     document.getElementById("removeLink").addEventListener("mousedown", (e) => e.preventDefault());
     document.getElementById("removeLink").addEventListener("click", () => {
