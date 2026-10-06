@@ -12,6 +12,24 @@
 <title>Skillitize - Blog Management</title>
 
 <style>
+.editor-wrap { border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden; background: white; }
+.editor-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 10px; background: #f8fafc; border-bottom: 1px solid #e5e7eb; }
+.editor-btn, .editor-select { border: 1px solid #d1d5db; background: white; color: #1f2937; border-radius: 5px; padding: 7px 10px; font-size: 13px; cursor: pointer; }
+.editor-btn:hover, .editor-select:hover { background: #f1f5f9; border-color: #94a3b8; }
+.editor-btn:active { transform: translateY(1px); }
+.editor-select { min-width: 125px; }
+.toolbar-divider { width: 1px; height: 25px; background: #d1d5db; margin: 0 3px; }
+.rich-editor { min-height: 320px; padding: 16px; outline: none; font-size: 16px; line-height: 1.7; color: #1f2937; overflow-y: auto; }
+.rich-editor:empty::before { content: attr(data-placeholder); color: #9ca3af; pointer-events: none; }
+.rich-editor p { margin: 0 0 12px; }
+.rich-editor h2, .rich-editor h3, .rich-editor h4 { margin: 18px 0 10px; line-height: 1.3; }
+.rich-editor h2 { font-size: 26px; } .rich-editor h3 { font-size: 22px; } .rich-editor h4 { font-size: 19px; }
+.rich-editor ul, .rich-editor ol { margin: 8px 0 14px 25px; }
+.rich-editor blockquote { margin: 15px 0; padding: 10px 15px; border-left: 4px solid #7c3aed; background: #f8fafc; color: #475569; }
+.rich-editor a { color: #2563eb; text-decoration: underline; }
+.editor-help { display: block; margin-top: 7px; color: #64748b; font-size: 12px; }
+@media (max-width: 700px) { .editor-toolbar { gap: 5px; padding: 8px; } .editor-btn, .editor-select { padding: 6px 8px; font-size: 12px; } .rich-editor { min-height: 280px; } }
+
 .header {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
@@ -201,52 +219,43 @@
 
             <!-- CONTENT -->
 
-           <div class="form-group">
+            <div class="form-group">
 
-    <label>
-        Blog Content
-    </label>
+                <label for="content">
+                    Blog Content
+                </label>
 
-    <div class="editor-toolbar">
+                <div class="editor-wrap">
+                    <div class="editor-toolbar" role="toolbar" aria-label="Blog content formatting">
+                        <button type="button" class="editor-btn" data-command="bold" title="Bold"><strong>B</strong></button>
+                        <button type="button" class="editor-btn" data-command="italic" title="Italic"><em>I</em></button>
+                        <button type="button" class="editor-btn" data-command="underline" title="Underline"><u>U</u></button>
+                        <span class="toolbar-divider"></span>
+                        <select class="editor-select" id="formatBlock" title="Text style">
+                            <option value="p">Paragraph</option>
+                            <option value="h2">Heading 2</option>
+                            <option value="h3">Heading 3</option>
+                            <option value="h4">Heading 4</option>
+                            <option value="blockquote">Quote</option>
+                        </select>
+                        <span class="toolbar-divider"></span>
+                        <button type="button" class="editor-btn" data-command="insertUnorderedList" title="Bullet list">• List</button>
+                        <button type="button" class="editor-btn" data-command="insertOrderedList" title="Numbered list">1. List</button>
+                        <span class="toolbar-divider"></span>
+                        <button type="button" class="editor-btn" data-command="justifyLeft" title="Align left">Left</button>
+                        <button type="button" class="editor-btn" data-command="justifyCenter" title="Align center">Center</button>
+                        <button type="button" class="editor-btn" data-command="justifyRight" title="Align right">Right</button>
+                        <span class="toolbar-divider"></span>
+                        <button type="button" class="editor-btn" id="addLink" title="Add hyperlink">🔗 Link</button>
+                        <button type="button" class="editor-btn" id="removeLink" title="Remove hyperlink">Unlink</button>
+                        <span class="toolbar-divider"></span>
+                        <button type="button" class="editor-btn" data-command="removeFormat" title="Clear formatting">Clear</button>
+                    </div>
+                    <div id="content" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Write the complete blog content here..."></div>
+                </div>
+                <small class="editor-help">Select text and use the toolbar to format it or add hyperlinks.</small>
 
-        <button type="button" onclick="formatText('bold')">
-            <b>B</b>
-        </button>
-
-        <button type="button" onclick="formatText('italic')">
-            <i>I</i>
-        </button>
-
-        <button type="button" onclick="formatText('formatBlock', 'H2')">
-            H2
-        </button>
-
-        <button type="button" onclick="formatText('formatBlock', 'H3')">
-            H3
-        </button>
-
-        <button type="button" onclick="formatText('insertUnorderedList')">
-            • List
-        </button>
-
-        <button type="button" onclick="addLink()">
-            🔗 Link
-        </button>
-
-        <button type="button" onclick="removeLink()">
-            Remove Link
-        </button>
-
-    </div>
-
-    <div
-        id="content"
-        class="content-editor"
-        contenteditable="true"
-        data-placeholder="Write the complete blog content here..."
-    ></div>
-
-</div>
+            </div>
 
 
 
@@ -739,7 +748,7 @@
                     summary.value.trim(),
 
                 content:
-                    content.value,
+                    content.innerHTML.trim(),
 
                 image_url:
                     imageUrl.value.trim(),
@@ -876,7 +885,7 @@
             summary.value =
                 blog.summary || "";
 
-            content.value =
+            content.innerHTML =
                 blog.content || "";
 
             imageUrl.value =
@@ -1211,6 +1220,89 @@
 
 
 
+
+    /* ==========================
+       RICH TEXT EDITOR
+    ========================== */
+
+    const richEditor = document.getElementById("content");
+    let savedEditorRange = null;
+
+    function saveEditorSelection() {
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0 && richEditor.contains(selection.anchorNode)) {
+            savedEditorRange = selection.getRangeAt(0).cloneRange();
+        }
+    }
+
+    function restoreEditorSelection() {
+        richEditor.focus();
+        if (savedEditorRange) {
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(savedEditorRange);
+        }
+    }
+
+    richEditor.addEventListener("keyup", saveEditorSelection);
+    richEditor.addEventListener("mouseup", saveEditorSelection);
+    richEditor.addEventListener("input", saveEditorSelection);
+
+    document.querySelectorAll(".editor-btn[data-command]").forEach((button) => {
+        button.addEventListener("mousedown", (e) => e.preventDefault());
+        button.addEventListener("click", () => {
+            restoreEditorSelection();
+            document.execCommand(button.dataset.command, false, null);
+            saveEditorSelection();
+        });
+    });
+
+    document.getElementById("formatBlock").addEventListener("change", function() {
+        restoreEditorSelection();
+        document.execCommand("formatBlock", false, this.value);
+        saveEditorSelection();
+        this.value = "p";
+    });
+
+    document.getElementById("addLink").addEventListener("mousedown", (e) => e.preventDefault());
+    document.getElementById("addLink").addEventListener("click", () => {
+        restoreEditorSelection();
+        const selection = window.getSelection();
+        if (!selection || selection.rangeCount === 0 || selection.toString().trim() === "") {
+            alert("First select the text you want to make into a link.");
+            return;
+        }
+        let url = prompt("Enter the full URL (for example: https://skillitize.com):");
+        if (!url) return;
+        url = url.trim();
+        if (!/^(https?:\/\/|mailto:)/i.test(url)) url = "https://" + url;
+        document.execCommand("createLink", false, url);
+        saveEditorSelection();
+    });
+
+    document.getElementById("removeLink").addEventListener("mousedown", (e) => e.preventDefault());
+    document.getElementById("removeLink").addEventListener("click", () => {
+        restoreEditorSelection();
+        document.execCommand("unlink", false, null);
+        saveEditorSelection();
+    });
+
+    richEditor.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+            e.preventDefault();
+            document.getElementById("addLink").click();
+        }
+    });
+
+    /* Prevent a blank editor from being submitted */
+    blogForm.addEventListener("submit", (e) => {
+        if (richEditor.innerText.trim() === "") {
+            e.preventDefault();
+            formMessage.textContent = "Please enter blog content.";
+            richEditor.focus();
+        }
+    }, true);
+
     /* ==========================
        INITIAL LOAD
     ========================== */
@@ -1218,7 +1310,6 @@
     loadBlogs();
 
 </script>
-```
 
 </body>
 
