@@ -1,0 +1,1292 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10214B">
+
+    <style>
+      :root {
+        --navy: #10214B;
+        --navy-light: #1B3267;
+        --blue: #2856B6;
+        --blue-light: #EDF3FF;
+        --green: #16845B;
+        --green-light: #E8F6EF;
+        --white: #FFFFFF;
+        --bg: #F3F6FB;
+        --text: #182238;
+        --muted: #68758A;
+        --border: #DFE5EF;
+        --danger: #B42318;
+        --danger-light: #FFF0EE;
+        --warning: #9A6700;
+        --warning-light: #FFF7DF;
+        --shadow: 0 8px 28px rgba(16,33,75,.06);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      button, input { font: inherit; }
+      button { cursor: pointer; }
+      button:disabled { opacity: .55; cursor: not-allowed; }
+
+
+  /* Skillitize Assessment Header */
+.topbar {
+  width: 100%;
+  background: #10214B;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  box-shadow: 0 2px 6px rgba(16, 33, 75, 0.12);
+}
+
+.topbar-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.skillitize-logo {
+  display: block;
+  width: 180px;
+  height: 80px;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+.assessment-heading {
+  width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+@media (max-width: 520px) {
+  .skillitize-logo {
+    width: 145px;
+    height: 65px;
+  }
+
+  .assessment-heading {
+    font-size: 12px;
+    letter-spacing: 0.2px;
+  }
+}
+
+  .brand-mark {
+    width: 220px;
+    height: 124px;
+    padding: 4px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .brand-mark img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .brand-name {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: .3px;
+      }
+
+      .brand-tagline {
+        color: #D4DDF2;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+
+      .secure-label {
+        font-size: 12px;
+        color: #E1E8F8;
+        white-space: nowrap;
+      }
+
+      main {
+        max-width: 1400px;
+        margin: 26px auto;
+        padding: 0 22px 32px;
+      }
+
+      .page-heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { font-size: 26px; line-height: 1.25; margin-bottom: 7px; }
+      h2 { font-size: 20px; margin-bottom: 8px; }
+      h3 { font-size: 15px; margin-bottom: 13px; }
+
+      .muted { color: var(--muted); }
+      .small { font-size: 12px; }
+
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--blue);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .hidden { display: none !important; }
+
+      .form-card {
+        max-width: 600px;
+        margin: 35px auto;
+      }
+
+      .field { margin: 19px 0; }
+
+      .field label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 7px;
+        font-size: 13px;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid #CDD5E2;
+        border-radius: 9px;
+        background: white;
+        color: var(--text);
+        outline: none;
+      }
+
+      .field input:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px #2856B61A;
+      }
+
+      .btn {
+        border: 1px solid transparent;
+        border-radius: 9px;
+        padding: 11px 17px;
+        font-size: 13px;
+        font-weight: 750;
+        transition: background .15s ease;
+      }
+
+      .btn-primary { background: var(--blue); color: white; }
+      .btn-primary:hover:not(:disabled) { background: #20489D; }
+      .btn-secondary {
+        background: white;
+        border-color: var(--border);
+        color: var(--navy);
+      }
+
+      .btn-danger { background: var(--danger); color: white; }
+      .btn-block { width: 100%; }
+
+      .notice {
+        border-radius: 9px;
+        background: var(--blue-light);
+        color: var(--navy);
+        padding: 13px 15px;
+        font-size: 12px;
+        margin: 17px 0;
+      }
+
+      .message {
+        max-width: 1000px;
+        margin: 0 auto 14px;
+        padding: 12px 15px;
+        border-radius: 9px;
+        color: var(--danger);
+        background: var(--danger-light);
+        white-space: pre-wrap;
+        font-size: 13px;
+      }
+
+      .message:empty { display: none; }
+
+      .exam-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        align-items: start;
+        gap: 20px;
+      }
+
+      .main-column { min-width: 0; }
+
+      .timer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .timer-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        padding: 17px 19px;
+        box-shadow: var(--shadow);
+      }
+
+      .timer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .timer-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background: var(--blue-light);
+        color: var(--blue);
+        font-size: 16px;
+      }
+
+      .timer-value {
+        font-size: clamp(25px, 3vw, 34px);
+        font-weight: 850;
+        color: var(--navy);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -.8px;
+        margin-top: 8px;
+        line-height: 1.3;
+      }
+
+      .timer-subtitle {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .timer-card.urgent {
+        border-color: #E8A49D;
+        background: #FFFAF9;
+      }
+
+      .timer-card.urgent .timer-value { color: var(--danger); }
+
+      .exam-card { padding: 26px; }
+
+      .question-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .question-counter {
+        color: var(--blue);
+        background: var(--blue-light);
+        border-radius: 7px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .marks {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .progress-track {
+        height: 6px;
+        border-radius: 20px;
+        background: #E8EDF5;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--blue);
+        width: 0;
+        transition: width .2s ease;
+      }
+
+      .question-text {
+        font-size: clamp(18px, 2vw, 22px);
+        font-weight: 750;
+        line-height: 1.5;
+        margin: 0 0 24px;
+        overflow-wrap: anywhere;
+      }
+
+      .option-list { display: grid; gap: 11px; }
+
+      .option {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        border: 1px solid var(--border);
+        padding: 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: border-color .12s, background .12s;
+        min-width: 0;
+      }
+
+      .option:hover { border-color: #9AAED7; }
+
+      .option.selected {
+        border-color: var(--blue);
+        background: var(--blue-light);
+        box-shadow: inset 0 0 0 1px var(--blue);
+      }
+
+      .option input {
+        accent-color: var(--blue);
+        margin: 3px 0 0;
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+      }
+
+      .option-letter {
+        min-width: 25px;
+        height: 25px;
+        border: 1px solid #D5DCE8;
+        border-radius: 6px;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+        font-weight: 800;
+        background: white;
+        color: var(--navy);
+      }
+
+      .option.selected .option-letter {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: white;
+      }
+
+      .option-text { font-size: 14px; padding-top: 2px; overflow-wrap: anywhere; }
+
+      .exam-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-top: 1px solid var(--border);
+        padding-top: 21px;
+        margin-top: 25px;
+      }
+
+      .action-right { display: flex; gap: 9px; }
+
+      .palette-card {
+        position: sticky;
+        top: 14px;
+        padding: 21px;
+      }
+
+      .palette-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .palette-count {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 9px;
+        margin: 18px 0;
+      }
+
+      .palette-item {
+        min-width: 0;
+        aspect-ratio: 1;
+        border: 1px solid var(--border);
+        background: white;
+        color: #4D5A70;
+        border-radius: 8px;
+        font-weight: 800;
+        font-size: 12px;
+        position: relative;
+      }
+
+      .palette-item.current {
+        border: 2px solid var(--blue);
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+
+      .palette-item.answered {
+        background: var(--green-light);
+        border-color: #A5D8BE;
+        color: #126C49;
+      }
+
+      .palette-item.current.answered {
+        border: 2px solid var(--blue);
+        box-shadow: inset 0 0 0 1px white;
+      }
+
+      .palette-item.unanswered::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #AAB4C4;
+      }
+
+      .legend {
+        display: grid;
+        gap: 10px;
+        font-size: 12px;
+        color: var(--muted);
+        padding: 13px 0 19px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .legend-item { display: flex; align-items: center; gap: 9px; }
+
+      .legend-box {
+        width: 13px;
+        height: 13px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .legend-box.current { background: var(--blue-light); border-color: var(--blue); }
+      .legend-box.answered { background: var(--green-light); border-color: #A5D8BE; }
+      .legend-box.unanswered { background: white; }
+
+      .palette-note {
+        margin: 15px 0;
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .student-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 11px;
+        border: 1px solid #FFFFFF30;
+        border-radius: 8px;
+        font-size: 12px;
+        color: white;
+      }
+
+      .student-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #59D6A0;
+      }
+
+      .finish-card {
+        max-width: 620px;
+        margin: 45px auto;
+        text-align: center;
+        padding: 38px 26px;
+      }
+
+      .finish-icon {
+        width: 62px;
+        height: 62px;
+        margin: 0 auto 18px;
+        display: grid;
+        place-items: center;
+        background: var(--green-light);
+        color: var(--green);
+        font-size: 28px;
+        border-radius: 50%;
+      }
+
+      .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        padding: 22px 12px;
+      }
+
+      body.exam-mode .topbar { padding-top: 10px; padding-bottom: 10px; }
+      body.exam-mode main { margin-top: 16px; }
+
+      @media (min-width: 1200px) {
+        .exam-grid { grid-template-columns: minmax(0, 1fr) 315px; }
+      }
+
+      @media (max-width: 850px) {
+        main { padding: 0 14px 24px; margin-top: 18px; }
+        .exam-grid { grid-template-columns: 1fr; }
+        .palette-card { position: static; }
+        .palette { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+        .palette-note { margin-bottom: 5px; }
+      }
+
+      @media (max-width: 520px) {
+        .topbar { padding: 12px 14px; }
+        .brand-mark { width: 165px; height: 94px; }
+        .brand-name { font-size: 17px; }
+        .brand-tagline { font-size: 8px; letter-spacing: 1.3px; }
+        .secure-label { display: none; }
+        .page-heading { margin-bottom: 15px; }
+        h1 { font-size: 22px; }
+        .card { padding: 17px; border-radius: 12px; }
+        .timer-grid { gap: 9px; }
+        .timer-card { padding: 13px 11px; }
+        .timer-top { font-size: 10px; align-items: flex-start; }
+        .timer-icon { width: 25px; height: 25px; }
+        .timer-value { font-size: 24px; }
+        .timer-subtitle { font-size: 10px; }
+        .exam-card { padding: 17px; }
+        .question-text { font-size: 18px; }
+        .option { padding: 12px 10px; gap: 9px; }
+        .option-text { font-size: 13px; }
+        .exam-actions { align-items: stretch; flex-direction: column; }
+        .action-right { display: grid; grid-template-columns: 1fr 1fr; }
+        .exam-actions > .btn { width: 100%; }
+        .action-right .btn { padding: 12px 8px; }
+        .palette { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+        .palette-item { max-width: 52px; width: 100%; justify-self: center; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition: none !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img
+        class="skillitize-logo"
+        src="https://drive.google.com/thumbnail?id=1sB-wCaTWKTUHE4QerKTc9eH17TiZ6Bwz&sz=w1000"
+        alt="Skillitize India Pvt. Ltd."
+      >
+    </div>
+  </div>
+</header>
+
+    <main>
+      <div id="message" class="message" role="alert" aria-live="polite"></div>
+
+      <!-- Registration -->
+      <section id="registration" class="card form-card">
+        <div class="eyebrow">Student portal</div>
+        <h1>Welcome to your assessment</h1>
+        <p class="muted">Please enter your details to begin your examination.</p>
+
+        <form id="startForm">
+          <div class="field">
+            <label for="name">Full name *</label>
+            <input id="name" required maxlength="100"
+              autocomplete="name" placeholder="Enter your full name">
+          </div>
+
+          <div class="field">
+            <label for="email">Email address *</label>
+            <input id="email" type="email" required maxlength="200"
+              autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div class="field">
+  <label for="phone">Phone number *</label>
+  <input
+    id="phone"
+    type="tel"
+    required
+    maxlength="10"
+    minlength="10"
+    pattern="[0-9]{10}"
+    inputmode="numeric"
+    autocomplete="tel"
+    placeholder="Enter 10-digit phone number"
+    title="Enter exactly 10 digits"
+  >
+</div>
+
+          <div class="notice">
+            <strong>Before you begin</strong><br>
+            Your overall countdown starts when the test begins. Each question
+            also has its own time limit. Your answers are evaluated on submission.
+            The second detected tab switch will terminate your attempt.
+          </div>
+
+          <button class="btn btn-primary btn-block" id="startButton" type="submit">
+            Start Examination →
+          </button>
+        </form>
+
+        <p class="muted small" style="margin:18px 0 0;text-align:center">
+          By starting, you agree to follow the assessment instructions.
+        </p>
+      </section>
+
+      <!-- Examination -->
+      <section id="test" class="hidden">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow">Examination in progress</div>
+            <h1 id="examTitle">Skillitize Assessment</h1>
+            <div class="muted small">Read each question carefully before selecting an answer.</div>
+          </div>
+          <button id="fullscreenButton" class="btn btn-secondary" type="button">
+            ⛶ Full screen
+          </button>
+        </div>
+
+        <div class="exam-grid">
+          <div class="main-column">
+            <div class="timer-grid">
+              <div class="timer-card" id="totalTimerCard">
+                <div class="timer-top">
+                  <span>Total time remaining</span>
+                  <span class="timer-icon" aria-hidden="true">◷</span>
+                </div>
+                <div class="timer-value" id="totalTimer">--:--</div>
+                <div class="timer-subtitle">Overall examination countdown</div>
+              </div>
+
+              <div class="timer-card" id="questionTimerCard">
+                <div class="timer-top">
+                  <span>Question time remaining</span>
+                  <span class="timer-icon" aria-hidden="true">◴</span>
+                </div>
+                <div class="timer-value" id="questionTimer">--:--</div>
+                <div class="timer-subtitle">Moves forward when time expires</div>
+              </div>
+            </div>
+
+            <div class="card exam-card">
+              <div class="question-top">
+                <span class="question-counter" id="questionCounter">Question 1</span>
+                <span class="marks" id="questionMarks"></span>
+              </div>
+
+              <div class="progress-track" role="progressbar"
+                aria-label="Test progress" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="0" id="progressTrack">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+
+              <h2 class="question-text" id="questionText">Loading question…</h2>
+              <div class="option-list" id="options"></div>
+
+              <div class="exam-actions">
+                <button id="clearButton" class="btn btn-secondary" type="button">
+                  Clear selection
+                </button>
+                <div class="action-right">
+                  <button id="nextButton" class="btn btn-primary" type="button">
+                    Save &amp; Next →
+                  </button>
+                  <button id="submitButton" class="btn btn-danger" type="button">
+                    Submit test
+                  </button>
+                </div>
+              </div>
+              <p class="muted small" style="margin:16px 0 0">
+                Your answer is saved when you choose Save &amp; Next. The current
+                selection is held in this browser until then.
+              </p>
+            </div>
+          </div>
+
+          <!-- Palette -->
+          <aside class="card palette-card">
+            <div class="palette-heading">
+              <h3 style="margin:0">Question palette</h3>
+              <span class="palette-count" id="paletteCount">0 questions</span>
+            </div>
+            <p class="muted small" style="margin:7px 0 0">
+              Track your progress throughout the test.
+            </p>
+
+            <div id="palette" class="palette" aria-label="Question progress"></div>
+
+            <div class="legend">
+              <div class="legend-item">
+                <span class="legend-box current"></span> Current question
+              </div>
+              <div class="legend-item">
+                <span class="legend-box answered"></span> Answered
+              </div>
+              <div class="legend-item">
+                <span class="legend-box unanswered"></span> Not answered
+              </div>
+            </div>
+
+            <div class="palette-note">
+              Questions proceed in order. The palette shows progress; previous
+              questions cannot be reopened in this version.
+            </div>
+
+            <div class="student-chip" style="background:var(--blue-light);color:var(--navy);border-color:var(--border)">
+              <span class="student-dot"></span>
+              <span id="studentName">Student</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Final state -->
+      <section id="finished" class="card finish-card hidden">
+        <div class="finish-icon" id="finishIcon">✓</div>
+        <div class="eyebrow">Assessment status</div>
+        <h1 id="finishedTitle">Test completed</h1>
+        <p id="finishedText" class="muted">
+          Your response has been recorded.
+        </p>
+        <div id="scorePanel" class="notice hidden"></div>
+        <p class="muted small">
+          Thank you for taking the Skillitize assessment.
+        </p>
+      </section>
+
+      <div class="footer">
+        Skillitize • LEARN • GROW • SUCCEED
+      </div>
+    </main>
+
+    <script>
+      const $ = id => document.getElementById(id);
+
+      let token = "";
+      let state = null;
+      let selected = "";
+      let busy = false;
+      let timerInterval = null;
+      let refreshInFlight = false;
+      let lastVisibility = document.visibilityState;
+
+      // This palette state is a visual record for the current browser session.
+      // The existing backend does not expose the complete answer map.
+      let questionStatuses = {};
+
+      function showMessage(text) {
+        $("message").textContent = text || "";
+      }
+
+      async function callServer(method, ...args) {
+        const response = await fetch("/test/api.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ method, args })
+        });
+
+        let payload;
+        try {
+          payload = await response.json();
+        } catch (_) {
+          throw new Error("The test server returned an invalid response. Please try again.");
+        }
+
+        if (!response.ok || !payload || payload.ok !== true) {
+          throw new Error(
+            payload && payload.error
+              ? payload.error
+              : "Unable to contact the test server. Please try again."
+          );
+        }
+
+        return payload.data;
+      }
+
+      function formatTime(ms) {
+        const seconds = Math.max(0, Math.ceil(ms / 1000));
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        const h = Math.floor(m / 60);
+
+        if (h > 0) {
+          return h + ":" + String(m % 60).padStart(2, "0") +
+            ":" + String(s).padStart(2, "0");
+        }
+        return m + ":" + String(s).padStart(2, "0");
+      }
+
+      function setScreen(screen) {
+        ["registration", "test", "finished"].forEach(id => {
+          $(id).classList.toggle("hidden", id !== screen);
+        });
+        document.body.classList.toggle("exam-mode", screen === "test");
+      }
+
+      function storageKey(questionId) {
+        return "skillitize_answer_" + token + "_" + questionId;
+      }
+
+      function saveLocalAnswer(questionId, answer) {
+        if (!token || !questionId) return;
+        try {
+          if (answer) sessionStorage.setItem(storageKey(questionId), answer);
+          else sessionStorage.removeItem(storageKey(questionId));
+        } catch (_) {}
+      }
+
+      function readLocalAnswer(questionId) {
+        try {
+          return sessionStorage.getItem(storageKey(questionId)) || "";
+        } catch (_) {
+          return "";
+        }
+      }
+
+      $("startForm").addEventListener("submit", async event => {
+        event.preventDefault();
+        if (busy) return;
+// Validate phone number
+    const phone = $("phone").value.trim();
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        showMessage("Please enter a valid 10-digit phone number.");
+        $("phone").focus();
+        return;
+    }
+        busy = true;
+        $("startButton").disabled = true;
+        showMessage("");
+
+        try {
+          const result = await callServer("startTest", {
+            name: $("name").value,
+            email: $("email").value,
+            phone: $("phone").value
+          });
+
+          token = result.token;
+          questionStatuses = {};
+          sessionStorage.setItem("skillitize_test_token", token);
+          $("examTitle").textContent = result.title || "Skillitize Assessment";
+          $("studentName").textContent = $("name").value.trim();
+
+          // Release the lock before requesting the initial question.
+          busy = false;
+          await refreshState();
+        } catch (err) {
+          showMessage(err.message);
+        } finally {
+          busy = false;
+          $("startButton").disabled = false;
+        }
+      });
+
+      async function refreshState() {
+        if (!token || busy || refreshInFlight) return;
+
+        refreshInFlight = true;
+        try {
+          const result = await callServer("getState", token);
+          renderState(result);
+        } catch (err) {
+          showMessage(err.message);
+        } finally {
+          refreshInFlight = false;
+        }
+      }
+
+      function renderState(s) {
+        state = s;
+        showMessage("");
+
+        if (!s || s.status !== "IN_PROGRESS") {
+          showFinished(s || {});
+          return;
+        }
+
+        setScreen("test");
+        $("examTitle").textContent = s.title || "Skillitize Assessment";
+        $("studentName").textContent = s.name || $("studentName").textContent;
+
+        const q = s.question;
+        if (!q) {
+          showMessage("No question was returned. Please contact the test administrator.");
+          return;
+        }
+
+        const previousStatus = questionStatuses[q.id];
+        const saved = s.selected || readLocalAnswer(q.id) || "";
+        selected = saved;
+
+        if (saved) questionStatuses[q.id] = "answered";
+        else if (!previousStatus) questionStatuses[q.id] = "unanswered";
+
+        $("questionCounter").textContent =
+          "Question " + s.questionNumber + " of " + s.questionCount;
+
+        $("questionMarks").textContent =
+          (q.marks === 1 ? "1 mark" : q.marks + " marks");
+
+        $("questionText").textContent = q.text;
+
+        const percent = s.questionNumber / s.questionCount * 100;
+        $("progressFill").style.width = percent + "%";
+        $("progressTrack").setAttribute("aria-valuenow", String(Math.round(percent)));
+
+        const container = $("options");
+        container.replaceChildren();
+
+        Object.entries(q.options).forEach(([key, text]) => {
+          const label = document.createElement("label");
+          label.className = "option" + (selected === key ? " selected" : "");
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "answer";
+          radio.value = key;
+          radio.checked = selected === key;
+          radio.setAttribute("aria-label", "Option " + key);
+
+          radio.addEventListener("change", () => {
+            selected = key;
+            saveLocalAnswer(q.id, key);
+            questionStatuses[q.id] = "answered";
+
+            [...container.children].forEach(el =>
+              el.classList.remove("selected")
+            );
+            label.classList.add("selected");
+            renderPalette();
+          });
+
+          const letter = document.createElement("span");
+          letter.className = "option-letter";
+          letter.textContent = key;
+
+          const optionText = document.createElement("span");
+          optionText.className = "option-text";
+          optionText.textContent = text;
+
+          label.append(radio, letter, optionText);
+          container.append(label);
+        });
+
+        renderPalette();
+        startTimers();
+      }
+
+      function renderPalette() {
+        if (!state || !state.question) return;
+
+        const palette = $("palette");
+        palette.replaceChildren();
+
+        const currentId = state.question.id;
+        const count = Number(state.questionCount) || 0;
+
+        $("paletteCount").textContent =
+          count + (count === 1 ? " question" : " questions");
+
+        // The backend only exposes the current question, so the palette
+        // is an indicator rather than a navigation control.
+        for (let i = 1; i <= count; i++) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "palette-item";
+          button.textContent = String(i);
+          button.disabled = true;
+          button.setAttribute("aria-label", "Question " + i);
+
+          if (i === Number(state.questionNumber)) {
+            button.classList.add("current");
+            button.disabled = false;
+            button.setAttribute("aria-current", "step");
+          }
+
+          if (i === Number(state.questionNumber)) {
+            const status = questionStatuses[currentId];
+            if (status === "answered" || selected) {
+              button.classList.add("answered");
+            } else {
+              button.classList.add("unanswered");
+            }
+          } else {
+            // Earlier question statuses are only known in this page session.
+            const priorStatus = questionStatuses["index_" + i];
+            if (priorStatus === "answered") button.classList.add("answered");
+            else button.classList.add("unanswered");
+          }
+
+          palette.append(button);
+        }
+      }
+
+      function startTimers() {
+        if (timerInterval) clearInterval(timerInterval);
+
+        function tick() {
+          if (!state || state.status !== "IN_PROGRESS") return;
+
+          const now = Date.now();
+          const totalLeft = state.deadline - now;
+          const questionLeft = state.questionDeadline - now;
+
+          $("totalTimer").textContent = formatTime(totalLeft);
+          $("questionTimer").textContent = formatTime(questionLeft);
+
+          $("totalTimerCard").classList.toggle("urgent", totalLeft <= 60000);
+          $("questionTimerCard").classList.toggle("urgent", questionLeft <= 10000);
+
+          if (totalLeft <= 0 || questionLeft <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            refreshState();
+          }
+        }
+
+        tick();
+        timerInterval = setInterval(tick, 250);
+      }
+
+      $("nextButton").addEventListener("click", async () => {
+        if (!token || !state || busy) return;
+
+        busy = true;
+        $("nextButton").disabled = true;
+        $("clearButton").disabled = true;
+        showMessage("");
+
+        const oldQuestionId = state.question.id;
+        const oldIndex = Number(state.questionNumber);
+
+        try {
+          const result = await callServer("answerAndNext", token, selected);
+
+          if (selected) questionStatuses["index_" + oldIndex] = "answered";
+          else questionStatuses["index_" + oldIndex] = "unanswered";
+
+          saveLocalAnswer(oldQuestionId, "");
+
+          renderState(result);
+        } catch (err) {
+          showMessage(err.message);
+        } finally {
+          busy = false;
+          $("nextButton").disabled = false;
+          $("clearButton").disabled = false;
+        }
+      });
+
+      $("clearButton").addEventListener("click", () => {
+        if (!state || busy) return;
+
+        selected = "";
+        saveLocalAnswer(state.question.id, "");
+        questionStatuses[state.question.id] = "unanswered";
+
+        document.querySelectorAll('input[name="answer"]').forEach(el => {
+          el.checked = false;
+        });
+
+        document.querySelectorAll(".option").forEach(el => {
+          el.classList.remove("selected");
+        });
+
+        renderPalette();
+      });
+
+      $("submitButton").addEventListener("click", async () => {
+        if (!token || !state || busy) return;
+
+        const answered = Object.values(questionStatuses)
+          .filter(status => status === "answered").length;
+        const total = Number(state.questionCount) || 0;
+
+        const confirmMessage =
+          "Submit your examination now?\n\n" +
+          "Questions in this test: " + total + "\n" +
+          "Answers marked in this browser session: " + answered + "\n\n" +
+          "You cannot restart this attempt after submission.";
+
+        if (!window.confirm(confirmMessage)) return;
+
+        busy = true;
+        $("submitButton").disabled = true;
+        showMessage("");
+
+        try {
+          // Save the current selection before final submission.
+          const currentId = state.question.id;
+          if (selected) {
+            await callServer("answerAndNext", token, selected);
+            saveLocalAnswer(currentId, "");
+          }
+
+          const result = await callServer("submitTest", token);
+          showFinished(result);
+        } catch (err) {
+          showMessage(err.message);
+        } finally {
+          busy = false;
+          $("submitButton").disabled = false;
+        }
+      });
+
+      $("fullscreenButton").addEventListener("click", async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+            $("fullscreenButton").textContent = "⛶ Exit full screen";
+          } else {
+            await document.exitFullscreen();
+            $("fullscreenButton").textContent = "⛶ Full screen";
+          }
+        } catch (_) {
+          showMessage("Full-screen mode is not available in this browser. You can continue the test normally.");
+        }
+      });
+
+      document.addEventListener("fullscreenchange", () => {
+        $("fullscreenButton").textContent =
+          document.fullscreenElement ? "⛶ Exit full screen" : "⛶ Full screen";
+      });
+
+      document.addEventListener("visibilitychange", async () => {
+        const currentVisibility = document.visibilityState;
+        const switchedAway =
+          lastVisibility === "visible" && currentVisibility === "hidden";
+        lastVisibility = currentVisibility;
+
+        if (!switchedAway || !token || !state ||
+            state.status !== "IN_PROGRESS" || busy) return;
+
+        try {
+          const result = await callServer("recordTabSwitch", token);
+
+          if (result.status === "WARNING") {
+            window.alert(result.message);
+          } else {
+            showFinished(result);
+          }
+        } catch (err) {
+          showMessage("Could not record the tab-switch event: " + err.message);
+        }
+      });
+
+      function showFinished(s) {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
+
+        setScreen("finished");
+        $("finishIcon").textContent =
+          s.status === "TAB_SWITCH_TERMINATED" ? "!" : "✓";
+
+        $("finishedTitle").textContent =
+          s.status === "TAB_SWITCH_TERMINATED"
+            ? "Test terminated"
+            : "Assessment completed";
+
+        $("finishedText").textContent =
+          s.message || "Your assessment has ended.";
+
+        const scorePanel = $("scorePanel");
+        if (s.score !== null && s.score !== undefined &&
+            s.total !== null && s.total !== undefined) {
+          scorePanel.textContent = "Your score: " + s.score + " / " + s.total;
+          scorePanel.classList.remove("hidden");
+        } else {
+          scorePanel.classList.add("hidden");
+          scorePanel.textContent = "";
+        }
+
+        try {
+          sessionStorage.removeItem("skillitize_test_token");
+        } catch (_) {}
+      }
+
+      // Restore the session if the same browser tab is refreshed.
+      window.addEventListener("load", async () => {
+        let savedToken = "";
+
+        try {
+          savedToken = sessionStorage.getItem("skillitize_test_token") || "";
+        } catch (_) {}
+
+        if (!savedToken) return;
+
+        token = savedToken;
+        $("registration").classList.add("hidden");
+
+        try {
+          const result = await callServer("getState", token);
+          renderState(result);
+        } catch (err) {
+          showMessage("Could not restore your test: " + err.message);
+        }
+      });
+    </script>
+  </body>
+  </html>
