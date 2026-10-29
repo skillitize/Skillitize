@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,8 +34,7 @@ header h1 {
   font-size: 23px;
 }
 
-button,
-input {
+button, input {
   font: inherit;
 }
 
@@ -135,6 +135,7 @@ input:focus {
   margin: 12px 0;
   color: #555;
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .table-wrap {
@@ -150,8 +151,7 @@ table {
   min-width: 700px;
 }
 
-th,
-td {
+th, td {
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid #edf0f5;
@@ -232,15 +232,13 @@ tbody tr:hover {
 
 <main>
   <section class="panel">
-
     <h2>Website Database Records</h2>
+
     <p>
       Select a category below to view saved records and all available columns.
     </p>
 
-    <!-- Four clickable category tiles -->
     <div class="tabs" id="tableTabs">
-
       <button class="tab active" data-table="bookings">
         Bookings
       </button>
@@ -256,7 +254,6 @@ tbody tr:hover {
       <button class="tab" data-table="forms">
         Form Submissions
       </button>
-
     </div>
 
     <div class="toolbar">
@@ -279,7 +276,6 @@ tbody tr:hover {
     <div class="table-wrap">
       <table>
         <thead id="tableHead"></thead>
-
         <tbody id="tableBody">
           <tr>
             <td class="empty">Loading records...</td>
@@ -287,17 +283,13 @@ tbody tr:hover {
         </tbody>
       </table>
     </div>
-
   </section>
 </main>
 
 <script>
 "use strict";
 
-const API_BASE = "https://api.skillitize.com";
-const DATA_API = API_BASE + "/admin/get_website_data.php";
-
-const token = localStorage.getItem("skillitize_admin_token");
+const DATA_API = "https://api.skillitize.com/admin/get_website_data.php";
 
 const tableLabels = {
   bookings: "Bookings",
@@ -308,17 +300,27 @@ const tableLabels = {
 
 let currentTable = "bookings";
 let records = [];
-let loading = false;
 let requestNumber = 0;
 
-const escapeHtml = value =>
-  String(value ?? "").replace(/[&<>"']/g, character => ({
+const statusElement = document.getElementById("status");
+const tableHead = document.getElementById("tableHead");
+const tableBody = document.getElementById("tableBody");
+const searchInput = document.getElementById("searchInput");
+const refreshBtn = document.getElementById("refreshBtn");
+
+function getToken() {
+  return localStorage.getItem("skillitize_admin_token");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;"
   }[character]));
+}
 
 function formatColumnName(key) {
   return key
@@ -330,28 +332,35 @@ function formatColumnName(key) {
 }
 
 function showMessage(message) {
-  document.getElementById("tableHead").innerHTML = "";
+  tableHead.innerHTML = "";
 
-  document.getElementById("tableBody").innerHTML =
-    '<tr><td class="empty">' + escapeHtml(message) + "</td></tr>";
+  tableBody.innerHTML =
+    '<tr><td class="empty">' +
+    escapeHtml(message) +
+    "</td></tr>";
+}
+
+function clearSessionAndRedirect() {
+  localStorage.removeItem("skillitize_admin_token");
+  localStorage.removeItem("skillitize_admin");
+  window.location.replace("index.html");
 }
 
 async function loadData() {
+  const token = getToken();
+
   if (!token) {
-    window.location.replace("index.html");
+    clearSessionAndRedirect();
     return;
   }
 
   const thisRequest = ++requestNumber;
   const requestedTable = currentTable;
 
-  const status = document.getElementById("status");
-  const refreshBtn = document.getElementById("refreshBtn");
-
-  loading = true;
   refreshBtn.disabled = true;
+  statusElement.textContent =
+    "Loading " + tableLabels[requestedTable] + "...";
 
-  status.textContent = "Loading " + tableLabels[requestedTable] + "...";
   showMessage("Loading records...");
 
   try {
@@ -367,18 +376,45 @@ async function loadData() {
       }
     );
 
-    const result = await response.json().catch(() => null);
+    // Read the response as text first so non-JSON PHP errors
+    // can be diagnosed instead of being silently discarded.
+    const responseText = await response.text();
 
-    // Ignore stale responses if the user switched categories.
+    if (thisRequest !== requestNumber) return;
+
+    let result = null;
+
+    try {
+      result = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error(
+        "API returned non-JSON content.",
+        "HTTP status:",
+        response.status,
+        "Response:",
+        responseText.slice(0, 1500)
+      );
+
+      throw new Error(
+        "The API returned an invalid JSON response (HTTP " +
+        response.status +
+        "). Check the browser console for details."
+      );
+    }
+
+    console.log("Website data API:", {
+      table: requestedTable,
+      status: response.status,
+      response: result
+    });
+
     if (thisRequest !== requestNumber) return;
 
     if (response.status === 401 || response.status === 403) {
-      status.textContent = "Session expired. Please log in again.";
+      statusElement.textContent =
+        "Session expired. Please log in again.";
 
-      localStorage.removeItem("skillitize_admin_token");
-      localStorage.removeItem("skillitize_admin");
-
-      window.location.replace("index.html");
+      clearSessionAndRedirect();
       return;
     }
 
@@ -390,14 +426,21 @@ async function loadData() {
     }
 
     if (
-      !result ||
-      result.success !== true ||
-      !Array.isArray(result.data)
-    ) {
-      throw new Error(
-        result?.message || "Unexpected response from the data API."
-      );
-    }
+  !result ||
+  result.success !== true ||
+  !Array.isArray(result.data)
+) {
+  console.error("Unexpected API response structure:", {
+    requestedTable,
+    httpStatus: response.status,
+    responseBody: result,
+    responseText: responseText
+  });
+
+  throw new Error(
+    "Unexpected API response. Check Console for responseBody."
+  );
+}
 
     records = result.data;
     renderTable();
@@ -410,28 +453,18 @@ async function loadData() {
     records = [];
     showMessage(error.message || "Unable to load records.");
 
-    status.textContent =
+    statusElement.textContent =
       "Unable to load " + tableLabels[requestedTable] +
-      ". Check the API response.";
-
+      ". " + (error.message || "Please try again.");
   } finally {
     if (thisRequest === requestNumber) {
-      loading = false;
       refreshBtn.disabled = false;
     }
   }
 }
 
 function renderTable() {
-  const query = document
-    .getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
-
-  const tableHead = document.getElementById("tableHead");
-  const tableBody = document.getElementById("tableBody");
-  const status = document.getElementById("status");
+  const query = searchInput.value.trim().toLowerCase();
 
   const filtered = records.filter(row =>
     Object.values(row).some(value =>
@@ -439,8 +472,7 @@ function renderTable() {
     )
   );
 
-  // Use the real field names returned by PHP.
-  // All columns are discovered automatically.
+  // Discover all fields dynamically from the returned records.
   const columns = records.length
     ? [...new Set(records.flatMap(row => Object.keys(row)))]
     : [];
@@ -449,9 +481,7 @@ function renderTable() {
     tableHead.innerHTML = "";
     showMessage("No records found in this table.");
 
-    status.textContent =
-      "0 records shown · " + records.length + " total loaded";
-
+    statusElement.textContent = "0 records found.";
     return;
   }
 
@@ -476,17 +506,18 @@ function renderTable() {
     ).join("");
   }
 
-  status.textContent =
+  statusElement.textContent =
     filtered.length + " record(s) shown · " +
     records.length + " total loaded";
 }
 
-// Click a category tile to load its table.
+// Category selection.
 document.querySelectorAll(".tab").forEach(button => {
   button.addEventListener("click", () => {
     const selectedTable = button.dataset.table;
 
-    if (selectedTable === currentTable && loading) return;
+    if (!tableLabels[selectedTable]) return;
+    if (selectedTable === currentTable) return;
 
     currentTable = selectedTable;
     records = [];
@@ -495,36 +526,31 @@ document.querySelectorAll(".tab").forEach(button => {
       tab.classList.toggle("active", tab === button);
     });
 
-    document.getElementById("searchInput").value = "";
+    searchInput.value = "";
     loadData();
   });
 });
 
-// Search across all returned columns.
-document.getElementById("searchInput").addEventListener("input", renderTable);
+// Search across every returned field.
+searchInput.addEventListener("input", renderTable);
 
-// Reload the selected table.
-document.getElementById("refreshBtn").addEventListener("click", loadData);
+// Refresh the selected category.
+refreshBtn.addEventListener("click", loadData);
 
-// Return to the admin dashboard.
+// Dashboard navigation.
 document.getElementById("dashboardBtn").addEventListener("click", () => {
   window.location.href = "dashboard.html";
 });
 
-// Clear the local admin session.
+// Logout.
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("skillitize_admin_token");
-  localStorage.removeItem("skillitize_admin");
-  window.location.href = "index.html";
+  clearSessionAndRedirect();
 });
 
-// Load Bookings by default.
-if (!token) {
-  window.location.replace("index.html");
-} else {
-  loadData();
-}
+// Initial load.
+loadData();
 </script>
 
 </body>
 </html>
+```
