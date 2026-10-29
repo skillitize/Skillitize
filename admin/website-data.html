@@ -265,18 +265,28 @@ tbody tr:hover {
       </button>
     </div>
 
-    <div class="toolbar">
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="Search all columns..."
-        aria-label="Search records"
-      >
+    
+<div class="toolbar">
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Search all columns..."
+    aria-label="Search records"
+  >
 
-      <button class="primary-btn" id="refreshBtn">
-        Refresh
-      </button>
-    </div>
+  <button class="primary-btn" id="refreshBtn">
+    Refresh
+  </button>
+
+  <button class="primary-btn" id="exportCsvBtn">
+    Export CSV
+  </button>
+
+  <button class="primary-btn" id="exportExcelBtn">
+    Export Excel
+  </button>
+</div>
+
 
     <p id="status" class="status" role="status" aria-live="polite">
       Loading bookings...
@@ -555,6 +565,87 @@ document.getElementById("dashboardBtn").addEventListener("click", () => {
 document.getElementById("logoutBtn").addEventListener("click", () => {
   clearSessionAndRedirect();
 });
+
+
+function getFilteredRecords() {
+  const query = document
+    .getElementById("searchInput")
+    .value.trim()
+    .toLowerCase();
+
+  return records.filter(row =>
+    Object.values(row).some(value =>
+      String(value ?? "").toLowerCase().includes(query)
+    )
+  );
+}
+
+function downloadFile(content, filename, mimeType) {
+  const blob = new Blob(["\uFEFF" + content], {
+    type: mimeType
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = filename;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportRecords(format) {
+  const filtered = getFilteredRecords();
+
+  if (filtered.length === 0) {
+    alert("No records available to export.");
+    return;
+  }
+
+  const columns = [
+    ...new Set(filtered.flatMap(row => Object.keys(row)))
+  ];
+
+  // Escape CSV fields correctly, including commas and quotes.
+  const escapeCsv = value =>
+    '"' + String(value ?? "").replace(/"/g, '""') + '"';
+
+  const csv = [
+    columns.map(escapeCsv).join(","),
+    ...filtered.map(row =>
+      columns.map(column => escapeCsv(row[column])).join(",")
+    )
+  ].join("\r\n");
+
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = `skillitize_${currentTable}_${date}`;
+
+  if (format === "csv") {
+    downloadFile(
+      csv,
+      filename + ".csv",
+      "text/csv;charset=utf-8;"
+    );
+  } else {
+    // CSV opens directly in Microsoft Excel.
+    downloadFile(
+      csv,
+      filename + ".csv",
+      "application/vnd.ms-excel;charset=utf-8;"
+    );
+  }
+}
+
+document.getElementById("exportCsvBtn")
+  .addEventListener("click", () => exportRecords("csv"));
+
+document.getElementById("exportExcelBtn")
+  .addEventListener("click", () => exportRecords("excel"));
+
 
 // Initial load.
 loadData();
