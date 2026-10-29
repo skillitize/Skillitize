@@ -1,13 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Skillitize Admin Dashboard</title>
 
@@ -58,7 +55,7 @@
             padding: 25px;
             border-radius: 12px;
             margin-bottom: 25px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
         }
 
         .welcome h2 {
@@ -75,7 +72,7 @@
             background: white;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
         }
 
         .card h3 {
@@ -90,6 +87,15 @@
             background: #2563eb;
             color: white;
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        .card button:hover {
+            background: #1d4ed8;
+        }
+
+        .logout-btn:hover {
+            background: #f0f0f0;
         }
     </style>
 </head>
@@ -97,36 +103,27 @@
 <body>
 
     <header class="header">
-
         <h1>SKILLITIZE Admin</h1>
 
-        <button
-            class="logout-btn"
-            id="logoutButton"
-        >
+        <button class="logout-btn" id="logoutButton">
             Logout
         </button>
-
     </header>
-
 
     <main class="container">
 
         <section class="welcome">
-
             <h2>Welcome to Admin Dashboard</h2>
 
             <p id="adminInfo">
                 Loading admin information...
             </p>
-
         </section>
-
 
         <section class="cards">
 
+            <!-- Blog Management -->
             <div class="card">
-
                 <h3>📝 Blog Management</h3>
 
                 <p>
@@ -136,129 +133,107 @@
                 <button id="blogButton">
                     Manage Blog
                 </button>
-
             </div>
 
-
+            <!-- Website Data -->
             <div class="card">
-
                 <h3>📊 Website Data</h3>
 
                 <p>
-                    View website and submission information.
+                    View website form submissions and contact enquiries
+                    saved in the database.
                 </p>
 
-                <button>
+                <button id="viewDataButton">
                     View Data
                 </button>
-
             </div>
 
-
+            <!-- Admin Account -->
             <div class="card">
-
                 <h3>👤 Admin Account</h3>
 
                 <p>
                     Manage your administrator account.
                 </p>
 
-                <button>
+                <button id="accountButton">
                     Account Settings
                 </button>
-
             </div>
 
         </section>
-
     </main>
 
-
     <script>
-
         document.addEventListener("DOMContentLoaded", () => {
 
-            const token =
-                localStorage.getItem(
-                    "skillitize_admin_token"
-                );
+            const token = localStorage.getItem(
+                "skillitize_admin_token"
+            );
 
-            const adminData =
-                localStorage.getItem(
-                    "skillitize_admin"
-                );
+            const adminData = localStorage.getItem(
+                "skillitize_admin"
+            );
 
-
-            // No login token = return to login page
+            // Redirect to login if no token exists
             if (!token) {
-
                 window.location.href = "index.html";
-
                 return;
             }
 
-
             // Display admin information
             if (adminData) {
-
                 try {
+                    const admin = JSON.parse(adminData);
+                    const email = admin.email || "Administrator";
 
-                    const admin =
-                        JSON.parse(adminData);
-
-                    const email =
-                        admin.email || "Administrator";
-
-                    document.getElementById(
-                        "adminInfo"
-                    ).textContent =
+                    document.getElementById("adminInfo").textContent =
                         "Logged in as: " + email;
 
                 } catch (error) {
-
-                    document.getElementById(
-                        "adminInfo"
-                    ).textContent =
+                    document.getElementById("adminInfo").textContent =
                         "Administrator";
-
                 }
-
+            } else {
+                document.getElementById("adminInfo").textContent =
+                    "Administrator";
             }
 
-
             // Logout
-            document.getElementById(
-                "logoutButton"
-            ).addEventListener("click", () => {
+            document.getElementById("logoutButton")
+                .addEventListener("click", () => {
 
-                localStorage.removeItem(
-                    "skillitize_admin_token"
-                );
+                    localStorage.removeItem("skillitize_admin_token");
+                    localStorage.removeItem("skillitize_admin");
 
-                localStorage.removeItem(
-                    "skillitize_admin"
-                );
+                    window.location.href = "index.html";
+                });
 
-                window.location.href =
-                    "index.html";
+            // Blog Management
+            document.getElementById("blogButton")
+                .addEventListener("click", () => {
 
-            });
+                    window.location.href = "blog.html";
+                });
 
+            // Website Data
+            document.getElementById("viewDataButton")
+                .addEventListener("click", () => {
 
-            // Blog button
-            document.getElementById(
-                "blogButton"
-            ).addEventListener("click", () => {
+                    window.location.href = "website-data.html";
+                });
 
-                window.location.href =
-                    "blog.html";
+            // Admin Account (not connected yet)
+            document.getElementById("accountButton")
+                .addEventListener("click", () => {
 
-            });
+                    alert("Account Settings is not connected yet.");
+                });
 
         });
-
     </script>
 
 </body>
-
 </html>
+```
