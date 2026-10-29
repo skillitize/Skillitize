@@ -160,6 +160,15 @@ th, td {
   max-width: 400px;
 }
 
+/* Keep ID values on a single line */
+th:first-child,
+td:first-child {
+  min-width: 65px;
+  width: 65px;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
 th {
   background: #f8f9fc;
   position: sticky;
