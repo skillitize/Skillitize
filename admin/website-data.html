@@ -1,38 +1,229 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skillitize Website Data</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
-header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-header h1{margin:0;font-size:23px}
-button,select,input{font:inherit}
-button{cursor:pointer;border:0;border-radius:7px;padding:10px 14px}
-.header-btn{background:white;color:#333}
-main{max-width:1200px;margin:30px auto;padding:0 18px}
-.panel{background:white;padding:22px;border-radius:12px;box-shadow:0 3px 15px #0000000d;margin-bottom:20px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
-.toolbar input{flex:1;min-width:180px}
-input,select{padding:11px;border:1px solid #d7dce5;border-radius:7px}
-.tabs{display:flex;gap:10px;flex-wrap:wrap}
-.tab{background:#e9edff;color:#263c91}
-.tab.active{background:#2563eb;color:white}
-.status{margin:12px 0;color:#555}
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th,td{text-align:left;padding:12px;border-bottom:1px solid #edf0f5;vertical-align:top;overflow-wrap:anywhere}
-th{background:#f8f9fc}
-.empty{text-align:center;padding:30px;color:#666}
-@media(max-width:600px){header{padding:16px}main{padding:0 12px}.panel{padding:15px}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+header {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 23px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 14px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.header-btn {
+  background: white;
+  color: #333;
+}
+
+main {
+  max-width: 1500px;
+  margin: 30px auto;
+  padding: 0 18px;
+}
+
+.panel {
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px #0000000d;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.tab {
+  background: white;
+  color: #263c91;
+  border: 1px solid #dce3f4;
+  min-height: 64px;
+  padding: 14px 12px;
+  font-weight: 600;
+  text-align: left;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  border-color: #2563eb;
+  background: #f0f4ff;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  border-color: transparent;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+input {
+  padding: 11px;
+  border: 1px solid #d7dce5;
+  border-radius: 7px;
+}
+
+input:focus {
+  outline: 2px solid #c7d2fe;
+  border-color: #6366f1;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+}
+
+.status {
+  margin: 12px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow: auto;
+  max-height: 70vh;
+  border: 1px solid #edf0f5;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #edf0f5;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  max-width: 400px;
+}
+
+th {
+  background: #f8f9fc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: #fafbff;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+@media (max-width: 850px) {
+  .tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 16px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  main {
+    padding: 0 12px;
+    margin: 18px auto;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  .tabs {
+    gap: 8px;
+  }
+
+  .tab {
+    min-height: 54px;
+    font-size: 13px;
+    padding: 11px 9px;
+  }
+
+  .toolbar input {
+    min-width: 100%;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
   <h1>SKILLITIZE — Website Data</h1>
+
   <div>
     <button class="header-btn" id="dashboardBtn">Dashboard</button>
     <button class="header-btn" id="logoutBtn">Logout</button>
@@ -41,159 +232,299 @@ th{background:#f8f9fc}
 
 <main>
   <section class="panel">
-    <h2>Website Submissions</h2>
-    <p>View career guidance enquiries and contact messages saved on the website.</p>
 
-    <div class="tabs">
-      <button class="tab active" data-table="forms">Career Guidance</button>
-      <button class="tab" data-table="contacts">Contact Messages</button>
+    <h2>Website Database Records</h2>
+    <p>
+      Select a category below to view saved records and all available columns.
+    </p>
+
+    <!-- Four clickable category tiles -->
+    <div class="tabs" id="tableTabs">
+
+      <button class="tab active" data-table="bookings">
+        Bookings
+      </button>
+
+      <button class="tab" data-table="career_applications">
+        Career Applications
+      </button>
+
+      <button class="tab" data-table="contacts">
+        Contact Submissions
+      </button>
+
+      <button class="tab" data-table="forms">
+        Form Submissions
+      </button>
+
     </div>
 
     <div class="toolbar">
-      <input id="searchInput" type="search" placeholder="Search displayed records...">
-      <button id="refreshBtn" style="background:#2563eb;color:white">Refresh</button>
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search all columns..."
+        aria-label="Search records"
+      >
+
+      <button class="primary-btn" id="refreshBtn">
+        Refresh
+      </button>
     </div>
 
-    <p id="status" class="status" role="status">Loading data...</p>
+    <p id="status" class="status" role="status" aria-live="polite">
+      Loading bookings...
+    </p>
+
     <div class="table-wrap">
       <table>
         <thead id="tableHead"></thead>
+
         <tbody id="tableBody">
-          <tr><td class="empty">Loading...</td></tr>
+          <tr>
+            <td class="empty">Loading records...</td>
+          </tr>
         </tbody>
       </table>
     </div>
+
   </section>
 </main>
 
 <script>
+"use strict";
+
 const API_BASE = "https://api.skillitize.com";
 const DATA_API = API_BASE + "/admin/get_website_data.php";
 
 const token = localStorage.getItem("skillitize_admin_token");
 
-if (!token) {
-  window.location.replace("index.html");
-}
-
-let currentTable = "forms";
-let records = [];
-
-const configs = {
-  forms: {
-    label: "Career guidance submissions",
-    columns: [
-      ["id", "ID"],
-      ["name", "Name"],
-      ["email", "Email"],
-      ["phone", "Phone"],
-      ["college", "College"],
-      ["college_course", "Degree/Course"],
-      ["course", "Interested Course"],
-      ["message", "Message"],
-      ["created_at", "Submitted At"]
-    ]
-  },
-  contacts: {
-    label: "Contact messages",
-    columns: [
-      ["id", "ID"],
-      ["name", "Name"],
-      ["email", "Email"],
-      ["phone", "Phone"],
-      ["message", "Message"],
-      ["created_at", "Submitted At"]
-    ]
-  }
+const tableLabels = {
+  bookings: "Bookings",
+  career_applications: "Career Applications",
+  contacts: "Contact Submissions",
+  forms: "Form Submissions"
 };
 
-const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
-  "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-}[ch]));
+let currentTable = "bookings";
+let records = [];
+let loading = false;
+let requestNumber = 0;
+
+const escapeHtml = value =>
+  String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[character]));
+
+function formatColumnName(key) {
+  return key
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, character => character.toUpperCase());
+}
+
+function showMessage(message) {
+  document.getElementById("tableHead").innerHTML = "";
+
+  document.getElementById("tableBody").innerHTML =
+    '<tr><td class="empty">' + escapeHtml(message) + "</td></tr>";
+}
 
 async function loadData() {
-  const status = document.getElementById("status");
-  const body = document.getElementById("tableBody");
+  if (!token) {
+    window.location.replace("index.html");
+    return;
+  }
 
-  status.textContent = "Loading " + configs[currentTable].label + "...";
-  body.innerHTML = '<tr><td class="empty">Loading...</td></tr>';
+  const thisRequest = ++requestNumber;
+  const requestedTable = currentTable;
+
+  const status = document.getElementById("status");
+  const refreshBtn = document.getElementById("refreshBtn");
+
+  loading = true;
+  refreshBtn.disabled = true;
+
+  status.textContent = "Loading " + tableLabels[requestedTable] + "...";
+  showMessage("Loading records...");
 
   try {
-    const response = await fetch(DATA_API + "?table=" + encodeURIComponent(currentTable), {
-      method: "GET",
-      headers: {
-        "Authorization": "Bearer " + token,
-        "Accept": "application/json"
+    const response = await fetch(
+      DATA_API + "?table=" + encodeURIComponent(requestedTable),
+      {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Accept": "application/json"
+        },
+        cache: "no-store"
       }
-    });
+    );
 
-    const result = await response.json().catch(() => ({}));
+    const result = await response.json().catch(() => null);
+
+    // Ignore stale responses if the user switched categories.
+    if (thisRequest !== requestNumber) return;
 
     if (response.status === 401 || response.status === 403) {
-      status.textContent = "Your session is invalid or expired. Please log in again.";
+      status.textContent = "Session expired. Please log in again.";
+
       localStorage.removeItem("skillitize_admin_token");
       localStorage.removeItem("skillitize_admin");
-      setTimeout(() => window.location.replace("index.html"), 1200);
+
+      window.location.replace("index.html");
       return;
     }
 
-    if (!response.ok || result.success === false) {
-      throw new Error(result.message || "Request failed (HTTP " + response.status + ")");
+    if (!response.ok) {
+      throw new Error(
+        result?.message ||
+        "API request failed (HTTP " + response.status + ")."
+      );
     }
 
-    records = Array.isArray(result.data) ? result.data : [];
+    if (
+      !result ||
+      result.success !== true ||
+      !Array.isArray(result.data)
+    ) {
+      throw new Error(
+        result?.message || "Unexpected response from the data API."
+      );
+    }
+
+    records = result.data;
     renderTable();
+
   } catch (error) {
+    if (thisRequest !== requestNumber) return;
+
     console.error("Website data error:", error);
-    document.getElementById("tableHead").innerHTML = "";
-    body.innerHTML = '<tr><td class="empty">Unable to load data. Check the API URL, server response and CORS settings.</td></tr>';
-    status.textContent = error.message || "Unable to load data.";
+
+    records = [];
+    showMessage(error.message || "Unable to load records.");
+
+    status.textContent =
+      "Unable to load " + tableLabels[requestedTable] +
+      ". Check the API response.";
+
+  } finally {
+    if (thisRequest === requestNumber) {
+      loading = false;
+      refreshBtn.disabled = false;
+    }
   }
 }
 
 function renderTable() {
-  const config = configs[currentTable];
-  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  const query = document
+    .getElementById("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const tableHead = document.getElementById("tableHead");
+  const tableBody = document.getElementById("tableBody");
+  const status = document.getElementById("status");
+
   const filtered = records.filter(row =>
-    Object.values(row).some(value => String(value ?? "").toLowerCase().includes(query))
+    Object.values(row).some(value =>
+      String(value ?? "").toLowerCase().includes(query)
+    )
   );
 
-  document.getElementById("tableHead").innerHTML =
-    "<tr>" + config.columns.map(([, label]) => "<th>" + escapeHtml(label) + "</th>").join("") + "</tr>";
+  // Use the real field names returned by PHP.
+  // All columns are discovered automatically.
+  const columns = records.length
+    ? [...new Set(records.flatMap(row => Object.keys(row)))]
+    : [];
 
-  document.getElementById("tableBody").innerHTML = filtered.length
-    ? filtered.map(row => "<tr>" + config.columns.map(([key]) =>
+  if (columns.length === 0) {
+    tableHead.innerHTML = "";
+    showMessage("No records found in this table.");
+
+    status.textContent =
+      "0 records shown · " + records.length + " total loaded";
+
+    return;
+  }
+
+  tableHead.innerHTML =
+    "<tr>" +
+    columns.map(key =>
+      "<th>" + escapeHtml(formatColumnName(key)) + "</th>"
+    ).join("") +
+    "</tr>";
+
+  if (filtered.length === 0) {
+    tableBody.innerHTML =
+      '<tr><td class="empty" colspan="' + columns.length +
+      '">No matching records found.</td></tr>';
+  } else {
+    tableBody.innerHTML = filtered.map(row =>
+      "<tr>" +
+      columns.map(key =>
         "<td>" + escapeHtml(row[key]) + "</td>"
-      ).join("") + "</tr>").join("")
-    : '<tr><td class="empty" colspan="' + config.columns.length + '">No records found.</td></tr>';
+      ).join("") +
+      "</tr>"
+    ).join("");
+  }
 
-  document.getElementById("status").textContent =
-    filtered.length + " record(s) shown · " + records.length + " total loaded";
+  status.textContent =
+    filtered.length + " record(s) shown · " +
+    records.length + " total loaded";
 }
 
+// Click a category tile to load its table.
 document.querySelectorAll(".tab").forEach(button => {
   button.addEventListener("click", () => {
-    currentTable = button.dataset.table;
-    document.querySelectorAll(".tab").forEach(tab =>
-      tab.classList.toggle("active", tab === button)
-    );
+    const selectedTable = button.dataset.table;
+
+    if (selectedTable === currentTable && loading) return;
+
+    currentTable = selectedTable;
+    records = [];
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.toggle("active", tab === button);
+    });
+
     document.getElementById("searchInput").value = "";
     loadData();
   });
 });
 
+// Search across all returned columns.
 document.getElementById("searchInput").addEventListener("input", renderTable);
+
+// Reload the selected table.
 document.getElementById("refreshBtn").addEventListener("click", loadData);
+
+// Return to the admin dashboard.
 document.getElementById("dashboardBtn").addEventListener("click", () => {
   window.location.href = "dashboard.html";
 });
+
+// Clear the local admin session.
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("skillitize_admin_token");
   localStorage.removeItem("skillitize_admin");
   window.location.href = "index.html";
 });
 
-if (token) loadData();
+// Load Bookings by default.
+if (!token) {
+  window.location.replace("index.html");
+} else {
+  loadData();
+}
 </script>
+
 </body>
 </html>
